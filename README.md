@@ -18,7 +18,7 @@ Review Java 9 Concepts at Jet Speed.
 
 ### Platform Independence
 - Build once, run anywhere
-![alt text](images/java-write-once-run-anywhere.png)
+![alt text](images/java-write-once-run-anywhere.svg)
 - Java bytecode is the instruction set of the Java virtual machine
 
 
