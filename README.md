@@ -55,5 +55,3 @@ Three Types
 - Bootstrap Class Loader - Loads all the Java core files
 
 JVM needs to find a class, it starts with System Class Loader. If it is not found, it checks with Extension Class Loader. If it not found, it goes to the Bootstrap Class Loader. If a class is still not found, a ClassNotFoundException is thrown.
-
-
