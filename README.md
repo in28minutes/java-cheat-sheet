@@ -1035,7 +1035,7 @@ System.out.println(j);//j becomes 12, as both ++j expressions are executed
 ```
 
 #### Operator exclusive-OR (^)
-Result is true only if one of the operands is true.
+- Result is true only if one of the operands is true.
 ```
 System.out.println(true ^ false);//true
 System.out.println(false ^ true);//true
@@ -1196,7 +1196,7 @@ Looping a 2D array can be done using enhanced for loop. First loop lists all the
 ```
 for (int[] array: matrix) {
     for (int number: array) {
-System.out.println(number);
+         System.out.println(number);
     }
 }
 ```
@@ -1219,16 +1219,14 @@ Arrays.toString(matrix3));
 System.out.println(
 Arrays.deepToString(matrix3)); 
 //[[1, 2, 3], [4, 5, 6]]
-```
 
-matrix3[0] is a 1D Array
-```
-System.out.println(matrix3[0]);//[I@86c347
+System.out.println(matrix3[0]);//[I@86c347 - matrix3[0] is a 1D Array
 System.out.println(
 Arrays.toString(matrix3[0]));//[1, 2, 3]
 ```
 #### Comparing Arrays
-Arrays can be compared using static method equals defined in Arrays class. Two arrays are equal only if they have the same numbers in all positions and have the same size.
+- Arrays can be compared using static method ```equals``` defined in ```Arrays``` class. 
+- Two arrays are equal only if they have the same numbers in all positions and have the same size.
 ```
 int[] numbers1 = { 1, 2, 3 };
 int[] numbers2 = { 4, 5, 6 };
@@ -1241,7 +1239,7 @@ System.out.println(Arrays
 .equals(numbers1, numbers3)); //true
 ```
 #### Sorting an Array
-Array's can be sorted using static utility method sort defined in Arrays class.
+Array's can be sorted using static utility method ```sort`` defined in ```Arrays``` class.
 ```
 int rollNos[] = { 12, 5, 7, 9 };
 Arrays.sort(rollNos);
@@ -1268,15 +1266,14 @@ persons[2] = new Person();
 
 Creating and initializing person array
 ```
-Person[] personsAgain = { new Person(),
-new Person(),new Person()};
+Person[] personsAgain = { new Person(),new Person(),new Person()};
 ```
 #### Another Example
 ```
 Person[][] persons2D = 
     {
-{ new Person(),new Person(),new Person()},
-{ new Person(),new Person()}
+		{ new Person(),new Person(),new Person()},
+		{ new Person(),new Person()}
     };
 ```
 ### If Else Condition
@@ -1813,65 +1810,63 @@ This examples uses a continue statement with label. When k==5 is true, continue 
 Consider the example below. It declares an enum Season with 4 possible values.
 ```
     enum Season {
-WINTER, SPRING, SUMMER, FALL
+       WINTER, SPRING, SUMMER, FALL
     };
 ```
 #### Enum Example1
+
 Consider the example below:
 
 ```
-package com.in28minutes.enums;
 
 //Enum can be declared outside a class
 enum SeasonOutsideClass {
-    WINTER, SPRING, SUMMER, FALL
+	WINTER, SPRING, SUMMER, FALL
 };
 
 public class Enum {
-    //Enum can be declared inside a class
-    enum Season {
-WINTER, SPRING, SUMMER, FALL
-    };
+	// Enum can be declared inside a class
+	enum Season {
+		WINTER, SPRING, SUMMER, FALL
+	};
 
-    public static void main(String[] args) {
-/*//Uncommenting gives compilation error
-  //enum cannot be created in a method
-enum InsideMethodNotAllowed {
-    WINTER, SPRING, SUMMER, FALL
-};
-*/
+	public static void main(String[] args) {
+		/*
+		 * //Uncommenting gives compilation error //enum cannot be created in a
+		 * method enum InsideMethodNotAllowed { WINTER, SPRING, SUMMER, FALL };
+		 */
 
-//Converting String to Enum
-Season season = Season.valueOf("FALL");
+		// Converting String to Enum
+		Season season = Season.valueOf("FALL");
 
-//Converting Enum to String
-System.out.println(season.name());//FALL
+		// Converting Enum to String
+		System.out.println(season.name());// FALL
 
-//Default ordinals of enum
-// By default java assigns ordinals in order
-System.out.println(Season.WINTER.ordinal());//0
-System.out.println(Season.SPRING.ordinal());//1
-System.out.println(Season.SUMMER.ordinal());//2
-System.out.println(Season.FALL.ordinal());//3
- 
-//Looping an enum => We use method values
-for (Season season1: Season.values()) {
-    System.out.println(season1.name());
-    //WINTER SPRING SUMMER FALL (separate lines)
-}
+		// Default ordinals of enum
+		// By default java assigns ordinals in order
+		System.out.println(Season.WINTER.ordinal());// 0
+		System.out.println(Season.SPRING.ordinal());// 1
+		System.out.println(Season.SUMMER.ordinal());// 2
+		System.out.println(Season.FALL.ordinal());// 3
 
-//Comparing two Enums
-Season season1 = Season.FALL;
-Season season2 = Season.FALL;
-System.out.println(season1 == season2);//true
-System.out.println(season1.equals(season2));//true
-    }
+		// Looping an enum => We use method values
+		for (Season season1 : Season.values()) {
+			System.out.println(season1.name());
+			// WINTER SPRING SUMMER FALL (separate lines)
+		}
+
+		// Comparing two Enums
+		Season season1 = Season.FALL;
+		Season season2 = Season.FALL;
+		System.out.println(season1 == season2);// true
+		System.out.println(season1.equals(season2));// true
+	}
 }
 ```
 #### Enum Rules
 Enums can be declared in a separate class(SeasonOutsideClass) or as member of a class(Season). Enums cannot be declared in a method.
-Conversion of Enum
-Function valueOf(String)  is used to convert a string to enum.
+
+Conversion of Enum : Function valueOf(String)  is used to convert a string to enum.
 ```
 //Converting String to Enum
 Season season = Season.valueOf("FALL");
@@ -1902,7 +1897,7 @@ for (Season season1: Season.values()) {
 }
 ```
 
-Comparing two Enums.
+#### Comparing two Enums.
 Values of Enum's can be compared using == or the equals function. 
 ```
 //Comparing two Enums
@@ -1911,75 +1906,81 @@ Season season2 = Season.FALL;
 System.out.println(season1 == season2);//true
 System.out.println(season1.equals(season2));//true
 ```
+
 #### Enum Example 2
 ```
-package com.in28minutes.enums;
+package com.in28minutes.java.beginners.concept.examples.enums;
 
 public class EnumAdvanced {
 
-    //Enum with a variable,method and constructor
-    enum SeasonCustomized {
-WINTER(1), SPRING(2), SUMMER(3), FALL(4);
+	// Enum with a variable,method and constructor
+	enum SeasonCustomized {
+		WINTER(1), SPRING(2), SUMMER(3), FALL(4);
 
-//variable
-private int code;
+		// variable
+		private int code;
 
-//method
-public int getCode() {
-    return code;
-}
+		// method
+		public int getCode() {
+			return code;
+		}
 
-//Constructor-only private or (default) 
-//modifiers are allowed
-SeasonCustomized(int code) {
-    this.code = code;
-}
+		// Constructor-only private or (default)
+		// modifiers are allowed
+		SeasonCustomized(int code) {
+			this.code = code;
+		}
 
-//Getting value of enum from code 
-public static SeasonCustomized valueOf(int code) {
-    for (SeasonCustomized season: SeasonCustomized
-    .values()) {
-if (season.getCode() == code)
-    return season;
-    }
-    throw new RuntimeException("value not found");// Just for kicks
-}
+		// Getting value of enum from code
+		public static SeasonCustomized valueOf(int code) {
+			for (SeasonCustomized season : SeasonCustomized.values()) {
+				if (season.getCode() == code)
+					return season;
+			}
+			throw new RuntimeException("value not found");// Just for kicks
+		}
 
-//Using switch statement on an enum
-public int getExpectedMaxTemperature() {
-    switch (this) {
-    case WINTER:
-return 5;
-    case SPRING:
-    case FALL:
-return 10;
-    case SUMMER:
-return 20;
-    }
-    return -1;// Dummy since Java does not recognize this is possible    }
+		// Using switch statement on an enum
+		public int getExpectedMaxTemperature() {
+			switch (this) {
+			case WINTER:
+				return 5;
+			case SPRING:
+			case FALL:
+				return 10;
+			case SUMMER:
+				return 20;
+			}
+			return -1;// Dummy since Java does not recognize this is possible :)
+		}
 
-    };
+	};
 
-    public static void main(String[] args) {
-SeasonCustomized season = SeasonCustomized.WINTER;
+	public static void main(String[] args) {
+		SeasonCustomized season = SeasonCustomized.WINTER;
 
-/*//Enum constructor cannot be invoked directly
-  //Below line would cause COMPILER ERROR
-SeasonCustomized season2 = new SeasonCustomized(1);
-*/
+		/*
+		 * //Enum constructor cannot be invoked directly //Below line would
+		 * cause COMPILER ERROR SeasonCustomized season2 = new
+		 * SeasonCustomized(1);
+		 */
 
-System.out.println(season.getCode());//1
+		System.out.println(season.getCode());// 1
 
-System.out.println(season
-.getExpectedMaxTemperature());//5
+		System.out.println(season.getExpectedMaxTemperature());// 5
 
-System.out.println(SeasonCustomized.valueOf(4));//FALL
+		System.out.println(SeasonCustomized.valueOf(4));// FALL
 
-    }
+	}
+
 }
 ```
+
 #### More Enum Basics
-Enums can contain variables, methods, constructors. In example 2, we created a local variable called code with a getter. Also present is a constructor with code as parameters.
+
+- Enums can contain variables, methods, constructors. In example 2, we created a local variable called code with a getter. 
+- We also created a constructor with code as a parameter.
+
 ```
 //variable
 private int code;
@@ -2011,86 +2012,91 @@ SeasonCustomized season2 = new SeasonCustomized(1);
 #### Switch Statement in Enum
 Example below shows how we can use a switch around an enum.
 ```
-//Using switch statement on an enum
+// Using switch statement on an enum
 public int getExpectedMaxTemperature() {
-    switch (this) {
-    case WINTER:
-return 5;
-    case SPRING:
-    case FALL:
-return 10;
-    case SUMMER:
-return 20;
-    }
-    return -1;// Dummy since Java does not recognize this is possible    }
+	switch (this) {
+	case WINTER:
+		return 5;
+	case SPRING:
+	case FALL:
+		return 10;
+	case SUMMER:
+		return 20;
+	}
+	return -1;
+}
+
 ```
 #### Enum Example 3 
+
 Consider the example below: 
 ```
-package com.in28minutes.enums;
+package com.in28minutes.java.beginners.concept.examples.enums;
 
 public class EnumAdvanced2 {
 
-    //Enum with a variable,method and constructor
-    enum SeasonCustomized {
-WINTER(1) {
-    public int getExpectedMaxTemperature() {
-return 5;
-    }
-},
-SPRING(2), SUMMER(3) {
-    public int getExpectedMaxTemperature() {
-return 20;
-    }
-},
-FALL(4);
+	// Enum with a variable,method and constructor
+	enum SeasonCustomized {
+		WINTER(1) {
+			public int getExpectedMaxTemperature() {
+				return 5;
+			}
+		},
+		SPRING(2), SUMMER(3) {
+			public int getExpectedMaxTemperature() {
+				return 20;
+			}
+		},
+		FALL(4);
 
-//variable
-private int code;
+		// variable
+		private int code;
 
-//method
-public int getCode() {
-    return code;
-}
+		// method
+		public int getCode() {
+			return code;
+		}
 
-//Constructor-only private or (default) 
-//modifiers are allowed
-SeasonCustomized(int code) {
-    this.code = code;
-}
+		// Constructor-only private or (default)
+		// modifiers are allowed
+		SeasonCustomized(int code) {
+			this.code = code;
+		}
 
-public int getExpectedMaxTemperature() {
-    return 10;
-}
+		public int getExpectedMaxTemperature() {
+			return 10;
+		}
 
-    };
+	};
 
-    public static void main(String[] args) {
-SeasonCustomized season = SeasonCustomized.WINTER;
+	public static void main(String[] args) {
+		SeasonCustomized season = SeasonCustomized.WINTER;
 
-System.out.println(season
-.getExpectedMaxTemperature());//5
+		System.out.println(season.getExpectedMaxTemperature());// 5
 
-System.out.println(SeasonCustomized.FALL
-.getExpectedMaxTemperature());//10
+		System.out.println(SeasonCustomized.FALL.getExpectedMaxTemperature());// 10
 
-    }
+	}
+
 }
 ```
+
 #### Enum Constant Class. 
 In the example above, take a look at how the Winter Type is declared: It provides an overriding implementation for the getExpectedMaxTemperature method already declared in the Enum. This feature in an Enum is called a Constant Class.
 ```
 WINTER(1) {
     public int getExpectedMaxTemperature() {
-return 5;
+         return 5;
     }
 }
 ```
+
 ### Inheritance
-- Inheritance allows extending a functionality of a class and also promotes reuse of existing code. 
+
+Inheritance allows extending a functionality of a class and also promotes reuse of existing code. 
 
 #### Every Class extends Object class
-Every class in java is a sub class of the class Object. When we create a class we inherit all the methods and properties of Object class. Let's look at a simple example:
+Every class in java is a sub class of the class Object. When we create a class we inherit all the methods and properties of Object class.
 
 ```
 String str = "Testing";
@@ -2104,6 +2110,7 @@ if(str instanceof Object){
 ```
 
 In the above example, toString, hashCode and clone methods for String class are inherited from Object class and overridden.
+
 #### Inheritance Example 1
 
 Consider the example class Actor below:
@@ -2111,23 +2118,25 @@ Consider the example class Actor below:
 ```
 public class Actor {
     public void act(){
-System.out.println("Act");
+        System.out.println("Act");
     };
 }
 ```
 
-We can extend this class by using the keyword extends. Hero class extends Actor.
+We can extend this class by using the keyword ```extends```. 
+```Hero class extends Actor```
 
 ```
 //IS-A relationship. Hero is-a Actor
 public class Hero extends Actor {
     public void fight(){
-System.out.println("fight");
+       System.out.println("fight");
     };
 }
 ```
-
-We can now create an instance of Hero class. Since Hero extends Animal, the methods defined in Animal are also available through an instance of Hero class. In the example below, we invoke the act method on hero object. 
+Let's create an instance of Hero class. 
+- Since Hero extends Animal, the methods defined in Animal are also available through an instance of Hero class. 
+- In the example below, we invoke the act method on hero object. 
 
 ```
 Hero hero = new Hero();
@@ -2141,12 +2150,12 @@ Let's look at another class extending Actor class - Comedian.
 //IS-A relationship. Comedian is-a Actor
 public class Comedian extends Actor {
     public void performComedy(){
-System.out.println("Comedy");
+       System.out.println("Comedy");
     };
 }
 ```
 
-We can now reuse Animal methods from an instance of Comedian class as well.
+Methods in Animal class can be executed from an instance of Comedian class.
 
 ```
 Comedian comedian = new Comedian();
@@ -2154,6 +2163,7 @@ Comedian comedian = new Comedian();
 comedian.act();//Act
 comedian.performComedy();//Comedy
 ```
+
 #### Super class reference variable can hold an object of sub class
 
 ```
@@ -2161,21 +2171,18 @@ Actor actor1 = new Comedian();
 Actor actor2 = new Hero();
 ```
 
-Actor reference variables actor1, actor2 hold the reference of objects of sub classes of Animal, Comedian and Hero.
+- Since object is super class of all classes, an Object reference variable can also hold an instance of any class.
 
-Since object is super class of all classes, an Object reference variable can also hold an instance of any class.
 ```
 //Object is super class of all java classes
 Object object = new Hero(); 
 ```
+
 #### Inheritance: IS-A Relationship
-We should use inheritance only when there is an ÒIS AÓ relationship between classes. For example, Comedian IS-A Actor, Hero IS-A Actor are both true. So, inheritance is correct relationship between classes.
 
-Comedian is called a Sub Class. Actor is Super Class.
-
-Multiple Inheritance is not allowed in Java.
-
-Multiple Inheritance results in a number of complexities. Java does not support Multiple Inheritance.
+- We should use inheritance only when there is an IS-A relationship between classes. For example, Comedian IS-A Actor, Hero IS-A Actor are both true. So, inheritance is correct relationship between classes.
+- Comedian is called a Sub Class. Actor is Super Class.
+- Multiple Inheritance results in a number of complexities. Java does not support Multiple Inheritance.
 
 ```
 class Dog extends Animal, Pet { //COMPILER ERROR
@@ -2190,29 +2197,33 @@ class Pet extends Animal {
 class Dog extends Pet {
 }
 ```
+
 #### Inheritance and Polymorphism
-Polymorphism is defined as ÒSame CodeÓ giving ÒDifferent BehaviorÓ. Let's look at an example. 
+
+Polymorphism is defined as "Same Code" giving "Different Behavior".  
+
 #### Polymorphism Example
-Let's define an Animal class with a method shout.
+Let's define an ```Animal``` class with a method ```shout```.
+
 ```
 public class Animal {
     public String shout() {
-return "Don't Know!";
+        return "Don't Know!";
     }
 }
 ```
 
-Let's create two new sub classes of Animal overriding the existing shout method in Animal.
+Let's create two new sub classes of Animal overriding the Animal shout method.
 ```
 class Cat extends Animal {
     public String shout() {
-return "Meow Meow";
+        return "Meow Meow";
     }
 }
 
 class Dog extends Animal {
     public String shout() {
-return "BOW BOW";
+        return "BOW BOW";
     }
 
     public void run(){
@@ -2222,33 +2233,33 @@ return "BOW BOW";
 ```
 
 Look at the code below. An instance of Animal class is created. shout method is called. 
+
 ```
 Animal animal1 = new Animal();
-System.out.println(
-animal1.shout()); //Don't Know!
+System.out.println(animal1.shout()); //Don't Know!
 ```
 
-Look at the code below. An instance of Dog class is created and store in a reference variable of type Animal.
+Look at the code below. An instance of Dog class is created and stored in a reference variable of type Animal.
+
 ```
 Animal animal2 = new Dog();
 
 //Reference variable type => Animal
 //Object referred to => Dog
 //Dog's bark method is called.
-System.out.println(
-animal2.shout()); //BOW BOW
+System.out.println(animal2.shout()); //BOW BOW
 ```
 
 When shout method is called on animal2, it invokes the shout method in Dog class (type of the object pointed to by reference variable animal2).
 Even though dog has a method run, it cannot be invoked using super class reference variable.
+
 ```
 //animal2.run();//COMPILE ERROR
 ```
-### instanceof Operator
-- Let us discuss about the instanceof Operator in Java.
 
-#### instanceof Operator Example
-Let us consider the following class and interface declarations:
+### instanceof Operator
+
+Consider the following class and interface declarations:
 ```
 class SuperClass {
 };
@@ -2268,8 +2279,9 @@ class SubClass2 extends SuperClassImplementingInteface {
 class SomeOtherClass {
 };
 ```
-#### instanceof operators checks if an object is of a particular type.
-Let's consider the code below.  We create a few instances of the classes declared above.
+
+instanceof operator checks if an object is of a particular type.
+
 ```
 SubClass subClass = new SubClass();
 Object subClassObj = new SubClass();
@@ -2278,14 +2290,13 @@ SubClass2 subClass2 = new SubClass2();
 SomeOtherClass someOtherClass = new SomeOtherClass();
 ```
 
-Let's now run instanceof operator on the different instances created earlier.
+We can run instanceof operator on the different instances created earlier.
 ```
 System.out.println(subClass instanceof SubClass);//true
 System.out.println(subClass instanceof SuperClass);//true
 System.out.println(subClassObj instanceof SuperClass);//true
 
-System.out.println(subClass2 
-instanceof SuperClassImplementingInteface);//true
+System.out.println(subClass2 instanceof SuperClassImplementingInteface);//true
 ```
 
 instanceof can be used with interfaces as well. Since Super Class implements the interface, below code prints true.
@@ -2825,7 +2836,7 @@ System.out.println("Labrador Constructor");
 }
 ```
 #### Constructor Example 8
-Since a subclass constructor explicitly calls a super class constructor with no arguments, this can cause a few compiler errors. Let's look at an example.
+Since a subclass constructor explicitly calls a super class constructor with no arguments, this can cause a few compiler errors. 
 
 ```
 class Animal {
@@ -5609,7 +5620,7 @@ System.out.println(treeSetOrig);//[25, 35]
 - Let's take a look at different implementations of the Map interface.
 
 #### HashMap
-HashMap implements Map interface , there by supporting key value pairs. Let's look at an example.
+HashMap implements Map interface , there by supporting key value pairs. 
 #### HashMap Example
 ```
 Map<String, Cricketer> hashmap = new HashMap<String, Cricketer>();
