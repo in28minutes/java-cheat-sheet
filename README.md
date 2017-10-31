@@ -413,64 +413,42 @@ age >= 18 ? "Can Vote": "Cannot Vote");//Cannot Vote
 ```
 
 ### Passing Variables to Methods
-- All variables Ð primitives and references Ð in Java, are passed to functions using copy-of-variable-value.
+
+- All variables , primitives and references , in Java, are passed to functions using copy-of-variable-value.
 
 #### Passing Variables to Methods : Example
-```
-package com.rithus.variables;
+- Passing a primitive variable and modifying the value in a method
+- Passing a reference variable and modifying the value in a method
 
-public class PassingVariablesToMethods {
-    public static void main(String[] args) {
-PassingVariablesToMethods ref = new PassingVariablesToMethods();
-
-int n = 50;
-ref.incrementBy2(n);
-System.out.println("Passing primitive " 
-+ n);//Passing primitive 50
-
-Cricketer cric = new Cricketer();
-cric.runs = 50;
-ref.modifyCricketer(cric);
-System.out.println("Passing reference variable " 
-    + cric.runs);//Passing reference variable 150
-    }
-    
-    void incrementBy2(int number){
-number = number + 2;
-    }
-
-    void modifyCricketer(Cricketer cricketer){
-cricketer.runs += 100;
-    }
-}
-
-class Cricketer {
-    String name;
-    int runs;
-}
-```
 #### Returning a Value From Method
-Returning null instead of an object is valid.
-It is legal to return any value or variable of a Type that can be implicitly coverted to Return Type.
-Nothing should be returned from a void method.
+- null is a valid return value for an object.
+- You can return andy type that can be implicitly coverted to return type.
+- You cannot return anything from a void method.
+
 ### Types of Variables
+
 - Different Types of Variables: Static, Member (or instance), Local, Block
 
-#### Instance Variable
-Declared inside a class outside any method.
-Each instance of the class would have its own values.
-Also called member value, field or property.
-#### Local Variable
-Variables declared in a method
-Local Variables can only be marked with final modifier
-If the name of a Local Variable is same as the name of an instance variable, it results in shadowing.
-#### Member Variable
-Defined at class level and without keyword static.
+#### Instance Variables
+- Declared inside a class outside any method.
+- Each instance of the class would have its own values.
+- Also called member value, field or property.
+
+#### Local Variables
+- Variables declared in a method
+- Local Variables can only be marked with final modifier
+- If the name of a Local Variable is same as the name of an instance variable, it results in shadowing.
+
+#### Member Variables
+- Defined at class level and without keyword static.
+
 #### Static Variable
-Defined at class level and using keyword static.
+- Defined at class level and using keyword static.
+
 #### Member Variable and Static Variable
-Member Variables can be accessed only through object references.
-Static Variables can be accessed through a. Class Name and b. Object Reference. It is NOT recommended to use object reference to refer to static variables.
+- Member Variables can be accessed only through object references.
+- Static Variables can be accessed through a. Class Name and b. Object Reference. It is NOT recommended to use object reference to refer to static variables.
+
 #### Example Static and Member Variables
 ```
 public class StaticAndMemberVariables {
@@ -512,14 +490,16 @@ class Actor {
     static int count;    
 }
 ```
+
 ### Scope of a Variable
-- Scope of a variable defines where (which part of code) the value of variable can be accessed.
+- Scope of a variable defines where (which part of code) a variable can be accessed.
 
 #### Important Rules
 - Static Variable can be used anywhere in the class.
 - Member Variable can be used in any non-static method.
 - Local Variable can be used only in the method where it is declared.
 - Block Variable can be used only in the block (code between { and }) where it is declared.
+
 #### Variable Scope Examples
 Below code shows all these Rules in action:
 ```
@@ -532,52 +512,65 @@ public class VariablesExample {
     int memberVariable;
     
     void method1() {
-//RULE 3: method1LocalVariable can be used only in method1.
-int method1LocalVariable;
+		//RULE 3: method1LocalVariable can be used only in method1.
+		int method1LocalVariable;
 
-memberVariable = 5;//RULE 2
-staticVariable = 5;//RULE 1
+		memberVariable = 5;//RULE 2
+		staticVariable = 5;//RULE 1
 
-//Some Code
-{
-    //RULE 4:blockVariable can be used only in this block.
-    int blockVariable;
-    //Some Code
-}
+		//Some Code
+		{
+		    //RULE 4:blockVariable can be used only in this block.
+		    int blockVariable;
+		    //Some Code
+		}
 
-//blockVariable = 5;//COMPILER ERROR - RULE 4
+		//blockVariable = 5;//COMPILER ERROR - RULE 4
     }
     
     void method2() {
-//method1LocalVariable = 5; //COMPILER ERROR - RULE3
+		//method1LocalVariable = 5; //COMPILER ERROR - RULE3
     }
     
     static void staticMethod() {
-staticVariable = 5;//RULE 1
-//memberVariable = 5; //COMPILER ERROR - RULE 2
+		staticVariable = 5;//RULE 1
+		//memberVariable = 5; //COMPILER ERROR - RULE 2
     }
 }
 ```
+
 #### Scope Example 1
-staticVariable is declared using keyword static.It is available in the instance method method1 and static method named staticMethod.
+- staticVariable is declared using keyword static. 
+- It is available in the instance method method1 and static method named staticMethod.
+
 #### Scope Example 2
-memberVariable is declared directly in the class  and does NOT use keyword static. So, it is an instance variable. It is available in the instance method method1 but not accessible in the static method named staticMethod.
+- memberVariable is declared directly in the class  and does NOT use keyword static. So, it is an instance variable. 
+- It is available in the instance method method1 but not accessible in the static method named staticMethod.
+
 #### Scope Example 3
-method1LocalVariable is declared in the method method1. So, it is a local variable. It is available in the instance method method1 but available in any other  instance or static methods.
+- method1LocalVariable is declared in the method method1. So, it is a local variable. 
+- It is available in the instance method method1 but available in any other  instance or static methods.
+
 #### Scope Example 4
-blockVariable is declared in a block in method1. So, it is a block variable. It is available only in the block where it is defined. It is not accessible any where out side the block Ð even in the same method.
+- blockVariable is declared in a block in method1. So, it is a block variable. 
+- It is available only in the block where it is defined. 
+- It is not accessible any where out side the block , even in the same method.
+
 ### Variable Initialization
-- Initialization defines the first value that is assigned to a variable if a value is not assigned.
+- Initialization defines the default value assigned to a variable if it is not initialized.
 
 #### Important Rules
 - Member/Static variables are alway initialized with default values.
 - Default values for numeric types is 0, floating point types is 0.0, boolean is false, char  is '\u0000' and for a object reference variable is null.
 - Local variables are not initialized by default by compiler. 
-- If local variables are used before they are initialized, it would result in Compilation Error. Assigning a null value is a valid initialization for reference variables.
+- Using a local variable before initialization results in a compilation error.
+- Assigning a null value is a valid initialization for reference variables.
+
 #### Variable Initialization Examples
 Lets look at an example program to understand all the rules regarding variable initialization.
+
 ```
-package com.rithus.variables;
+package com.in28minutes.variables;
 
 //RULE1:Member/Static variables are alway initialized with 
 //default values.Default values for numeric types is 0, 
@@ -591,22 +584,22 @@ package com.rithus.variables;
 
 public class VariableInitialization {
     public static void main(String[] args) {
-Player player = new Player();
+		Player player = new Player();
 
-//score is an int member variable - default 0
-System.out.println(player.score);//0 - RULE1
+		//score is an int member variable - default 0
+		System.out.println(player.score);//0 - RULE1
 
-//name is a member reference variable - default null
-System.out.println(player.name);//null - RULE1
+		//name is a member reference variable - default null
+		System.out.println(player.name);//null - RULE1
 
-int local; //not initialized
-//System.out.println(local);//COMPILER ERROR! RULE3
+		int local; //not initialized
+		//System.out.println(local);//COMPILER ERROR! RULE3
 
-String value1;//not initialized
-//System.out.println(value1);//COMPILER ERROR! RULE3
+		String value1;//not initialized
+		//System.out.println(value1);//COMPILER ERROR! RULE3
 
-String value2 = null;//initialized
-System.out.println(value2);//null - NO PROBLEM.
+		String value2 = null;//initialized
+		System.out.println(value2);//null - NO PROBLEM.
     }
 }
 
@@ -617,17 +610,26 @@ class Player{
 }
 ```
 #### Initialization Example 1
-player  is an instance of the class Player. It contains member variables named name and score. All member variables are initialized by default. Since name refers to a String i.e a reference variable it is initialized to null. score is an int variable and hence initialized to 0.
+- player  is an instance of the class Player. It contains member variables named name and score. 
+- All member variables are initialized by default. Since name refers to a String i.e a reference variable it is initialized to null. score is an int variable and hence initialized to 0.
+
 #### Initialization Example 2 
-local  is a local variable defined in the main method. An attempt to access a local variable without initialization would result in a compilation error. Same is the case with value1 which is a String local variable. If null is assigned to a reference variable, reference variable is considered to be assigned.
+- local  is a local variable defined in the main method. 
+- An attempt to access a local variable without initialization would result in a compilation error. 
+- Same is the case with value1 which is a String local variable. 
+- If null is assigned to a reference variable, reference variable is considered to be assigned.
+
 ### Wrapper Classes
 - A primitive wrapper class in the Java programming language is one of eight classes provided in the java.lang package to provide object methods for the eight primitive types. All of the primitive wrapper classes in Java are immutable.
+
 #### List of Wrapper Classes in Java
-Wrapper:   Boolean,Byte,Character,Double,Float,Integer,Long,Short
-Primitive:    boolean,byte,char,double, float,   int    ,  long,short
+- Wrapper:   Boolean,Byte,Character,Double,Float,Integer,Long,Short
+- Primitive: boolean,byte,char,double, float,   int    ,  long,short
 
 Wrapper classes are final and immutable.
+
 #### Creating Wrapper Classes
+
 ```
 Integer number = new Integer(55);//int
 Integer number2 = new Integer("55");//String
@@ -650,10 +652,12 @@ Boolean b4 = new Boolean("SomeString");//value stored - false
 
 b = false;
 ```
-
 #### Wrapper Class Utility Methods
-A number of utility methods are defined in wrapper classes to create and convert them.
+
+- A number of utility methods are defined in wrapper classes to create and convert them.
+
 #### valueOf  Methods
+
 Provide another way of creating a Wrapper Object
 
 ```
@@ -665,6 +669,7 @@ Integer hundred =
 ```
 
 #### xxxValue methods 
+
 xxxValue methods help in creating primitives
 
 ```
@@ -676,8 +681,11 @@ Float floatWrapper = Float.valueOf(57.0f);
 int floatToInt = floatWrapper.intValue();//57
 float floatToFloat = floatWrapper.floatValue();//57.0f
 ```
+
 #### parseXxx methods
+
 parseXxx methods are similar to valueOf but they return primitive values
+
 ```
 int sevenPrimitive = 
     Integer.parseInt("111", 2);//binary 111 is converted to 7
@@ -685,8 +693,11 @@ int sevenPrimitive =
 int hundredPrimitive = 
     Integer.parseInt("100");//100 is stored in variable
 ```
+
 #### static toString method
+
 Look at the example of the toString static method below.
+
 ```
 Integer wrapperEight = new Integer(8);
 System.out.println(Integer.
@@ -694,13 +705,18 @@ toString(wrapperEight));//String Output: 8
 ```
 
 #### Overloaded static toString method
- 2nd parameter: radix
+
+2nd parameter: radix
+
 ```
 System.out.println(Integer
 .toString(wrapperEight, 2));//String Output: 1000
 ```
-#### static toXxxString methods. 
-Xxx can be Hex,Binary,Octal
+
+#### static toYyyyString methods. 
+
+Yyyy can be Hex,Binary,Octal
+
 ```
 System.out.println(Integer
 .toHexString(wrapperEight));//String Output:8 
@@ -709,14 +725,17 @@ System.out.println(Integer
 System.out.println(Integer
 .toOctalString(wrapperEight));//String Output:10
 ```
-#### Wrapper Class Ð Auto Boxing
+
+#### Wrapper Class , Auto Boxing
 ```
 Integer ten = new Integer(10);
-ten++;//allowed. Java does had work behind the screen for us
+ten++;//allowed. Java does the work behind the screen for us
+
 ```
 #### Boxing and new instances
-Auto Boxing helps in saving memory by reusing already created Wrapper objects. However wrapper classes created using new are not reused.
-Two wrapper objects created using new are not same object.
+- Auto Boxing helps in saving memory by reusing already created Wrapper objects. However wrapper classes created using new are not reused.
+- Two wrapper objects created using new are not same object.
+
 ```
 Integer nineA = new Integer(9);
 Integer nineB = new Integer(9);
@@ -724,18 +743,23 @@ System.out.println(nineA == nineB);//false
 System.out.println(nineA.equals(nineB));//true
 ```
 
-Two wrapper objects created using boxing are same object.
+- Two wrapper objects created using boxing are same object.
+
 ```
 Integer nineC = 9;
 Integer nineD = 9;
 System.out.println(nineC == nineD);//true
 System.out.println(nineC.equals(nineD));//true
 ```
+
 ### String Class
+
 - A String class can store a sequence of characters. String is not a primitive in Java but a Class in its own right.
 
 #### Strings are immutable
-Value of a String Object once created cannot be modified. Any modification on a String object creates a new String object.
+
+- Value of a String Object once created cannot be modified. Any modification on a String object creates a new String object.
+
 ```
 String str3 = "value1";
 str3.concat("value2");
@@ -743,19 +767,24 @@ System.out.println(str3); //value1
 ```
 
 Note that the value of str3 is not modified in the above example.  The result should be assigned to a new reference variable (or same variable can be reused).
+
 ```
 String concat = str3.concat("value2");
 System.out.println(concat); //value1value2
 ```
+
 #### String Constant Pool
-All strings literals are stored in "String constant pool". If compiler finds a String literal,it checks if it exists in the pool. If it exists, it is reused.
-Following statement creates 1 string object (created on the pool) and 1 reference variable.
+
+- All strings literals are stored in "String constant pool". If compiler finds a String literal,it checks if it exists in the pool. If it exists, it is reused.
+
+- Following statement creates 1 string object (created on the pool) and 1 reference variable.
+
 ```
 String str1 = "value"; 
 ```
 
-However, if new operator is used to create string object, the new object is created on the heap.
-Following piece of code create 2 objects.
+- However, if new operator is used to create string object, the new object is created on the heap. Following piece of code create 2 objects.
+
 ```
 //1. String Literal "value" - created in the "String constant pool"
 //2. String Object - created on the heap
@@ -763,12 +792,17 @@ String str2 = new String("value");
 ```
 
 #### String Method Examples
+
 String class defines a number of methods to get information about the string content.
+
 ```
 String str = "abcdefghijk";
 ```
-#### Get information from String
+
+##### Get information from String
+
 Following methods help to get information from a String.
+
 ```
 //char charAt(int paramInt)
 System.out.println(str.charAt(2)); //prints a char - c
@@ -783,8 +817,11 @@ System.out.println("abcdefghij".substring(3)); //cdefghij
 //All characters from index 3 to 6
 System.out.println("abcdefghij".substring(3,7)); //defg
 ```
+
 #### String Manipulation methods
+
 Most important thing to remember is a String object cannot be modified. When any of these methods are called, they return a new String with the modified value. The original String remains unchanged.
+
 ```
 //String concat(String paramString)
 System.out.println(str.concat("lmn"));//abcdefghijklmn
@@ -803,14 +840,12 @@ System.out.println("abcdefghij".toUpperCase()); //ABCDEFGHIJ
 System.out.println(" abcd  ".trim()); //abcd
 ```
 ### String Concatenation Operator
-- Let us look at the string concatenation operator in detail.
-https://docs.google.com/file/d/0B8KENIDghuHAMktLVVhhTDNHODA/edit?usp=drive_web
-#### Three Rules of String Concatenation
-RULE1: Expressions are evaluated from left to right.Except if there are parenthesis.
-RULE2: number + number = number
-RULE3: number + String = String
 
-Examples
+#### Three Rules of String Concatenation
+- RULE1: Expressions are evaluated from left to right.Except if there are parenthesis.
+- RULE2: number + number = number
+- RULE3: number + String = String
+
 ```
 System.out.println(5 + "Test" + 5); //5Test5
 System.out.println(5 + 5 + "Test"); //10Test
@@ -821,14 +856,19 @@ System.out.println("" + 5 + 5 + "25"); //5525
 System.out.println(5 + (5 + "25")); //5525
 System.out.println(5 + 5 + 25); //35
 ```
+
 ### Increment and Decrement Operators
+
 - Lets learn about the increment and decrement operators in Java.
 
 #### Basics of Increment and Decrement Operators
+
 Except for a minor difference ++i,i++ is similar to i = i+1 and --i,i-- is similar to i = i-1
 
 ++i is called pre-increment and i++ post increment
+
 #### Increment Operators
+
 Pre increment statement returns value after increment. Post increment statement returns value before increment
 
 ```
@@ -841,7 +881,9 @@ j = i++;//i value(25) is assigned to j, then incremented to 26
 System.out.println(i + " " + j);//26 25
 ```
 #### Decrement Operators
+
 Decrement Operators are similar to increment operators.
+
 ```
 i = 25;
 j = --i;//i is decremented to 24, assigned to j
@@ -851,67 +893,84 @@ i = 25;
 j = i--;//i value(25) is assigned to j, then decremented to 24
 System.out.println(i + " " + j);//24 25
 ```
+
 ### Relational Operators
+
 - Relation Operators are used to compare operands. They a always return true or false. List of Relation Operators include <, <=, >, >=, ==, and !=.
 
 #### Relation Operators Examples
-LetÕs consider a few examples of relational operators. LetÕs assume a int variable named number with a value 7.
+Let's consider a few examples of relational operators. Let's assume a int variable named number with a value 7.
+
 ```
 int number = 7;
 ```
+
 #### greater than operator
+
 ```
 System.out.println(number > 5);//true
 System.out.println(number > 7);//false
 ```
+
 #### greater than equal to operator
 ```
 System.out.println(number >= 7);//true
 ```
+
 #### less than operator
 ```
 System.out.println(number < 9);//true
 System.out.println(number < 7);//false
 ```
+
 #### less than equal to operator
 ```
 System.out.println(number <= 7);//true
 ```
+
 #### is equal to operator
 ```
 System.out.println(number == 7);//true
 System.out.println(number == 9);//false
 ```
+
 #### NOT equal to operator
 ```
 System.out.println(number != 9);//true
 System.out.println(number != 7);//false
 ```
 
-NOTE: single = is assignment operator and == is comparison. Below statement uses =.
+> single = is assignment operator and == is comparison. Below statement uses =.
+
 ```
 System.out.println(number = 7);//7
 ```
 #### == (equals) operator
-LetÕs look at how == equals operator works with primitives and reference variables.
+Let's look at how == equals operator works with primitives and reference variables.
+
 #### Primitive Variables
-Equality for Primitives only compares values
+
+- Equality for Primitives only compares values
+
 ```
 int a = 5;
 int b = 5;
 ```
 
 Below statement compares if a and b have same value.
+
 ```
 System.out.println(a == b);//true
 ```
 #### Reference Variables
+
 ```
 Integer aReference = new Integer(5);
 Integer bReference = new Integer(5);
 ```
 
-For reference variables, == compares if they are refering to the same object.
+For reference variables, == compares if they are referring to the same object.
+
 ```
 System.out.println(aReference == bReference);//false
 
@@ -920,11 +979,14 @@ bReference = aReference;
 //Now both are referring to same object
 System.out.println(aReference == bReference);//true
 ```
+
 ### Logical Operators
 - Logical Operators are &&, ||, |, &, ! and ^.
 
 #### Short Circuit And Operator - &&
-True when both operands are true.
+
+- True when both operands are true.
+
 ```
 System.out.println(true && true);//true
 System.out.println(true && false);//false
@@ -932,7 +994,9 @@ System.out.println(false && true);//false
 System.out.println(false && false);//false
 ```
 #### Short Circuit Or Operator - ||
+
 True when atleast one of operands are true.
+
 ```
 System.out.println(true || true);//true
 System.out.println(true || false);//true
@@ -941,28 +1005,35 @@ System.out.println(false || false);//false
 ```
 
 Logical Operators work with boolean values but not numbers.
+
 ```
 //System.out.println(5 || 6);//COMPILER ERROR
 ```
 #### Short circuit operators are Lazy 
-They stop execution the moment result is clear.  For &&, if first expression is false,result is false.  For ||, if first expression is true, the result is true. In above 2 situations, second expressions are not executed.
-#### Examples
+
+- They stop execution the moment result is clear.  
+   - For &&, if first expression is false,result is false.  
+   - For ||, if first expression is true, the result is true. 
+   - In above 2 situations, second expressions are not executed.
+
 ```
 int i = 10;
 System.out.println(true || ++i==11);//true
 System.out.println(false && ++i==11);//false
-System.out.println(i);//10
+System.out.println(i);//i remains 10, as ++i expressions are not executed.
 ```
-i remains 10, as ++i expressions are not executed.
+
 #### Operator & and |
-Logical Operators &, | are similar to &&, || except that they don't short ciruit. They execute the second expression even if the result is decided.
+- Logical Operators &, | are similar to &&, || except that they don't short ciruit. 
+- They execute the second expression even if the result is decided.
+
 ```
 int j = 10;
 System.out.println(true | ++j==11);//true
 System.out.println(false & ++j==12);//false
-System.out.println(j);//12
+System.out.println(j);//j becomes 12, as both ++j expressions are executed
 ```
-j becomes 12, as both ++j expressions are executed
+
 #### Operator exclusive-OR (^)
 Result is true only if one of the operands is true.
 ```
@@ -981,7 +1052,7 @@ System.out.println(!true);//false
 - Arrays allow storing multiple values of same type.
 
 #### Array Basics
-LetÕs discuss about basics of declaring and creating an Array.
+Let's discuss about basics of declaring and creating an Array.
 #### Declare an Array
 All below ways are legal. However, using the third format of declaration is recommended.
 ```
@@ -1028,7 +1099,7 @@ float,double0.0
 boolean false
 object    null
 #### Assigning values to an array
-Index of elements in an array runs from 0 to length Ð 1. We can use the index of an element to store a value into an array.
+Index of elements in an array runs from 0 to length , 1. We can use the index of an element to store a value into an array.
 ```
 marks[0] = 25;
 marks[1] = 30;
@@ -1094,7 +1165,7 @@ short[] shorts = new short[5];
 //ints = (int[])shorts;//COMPILER ERROR
 ```
 #### 2D Arrays
-LetÕs create a matrix with 2 rows and 3 columns.
+Let's create a matrix with 2 rows and 3 columns.
 ```
 int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
 
@@ -1130,7 +1201,7 @@ System.out.println(number);
 }
 ```
 #### Print Array Content
-LetÕs look at different methods in java to print the content of an array.
+Let's look at different methods in java to print the content of an array.
 #### Printing a 1D Array
 ```
 int marks5[] = { 25, 30, 50, 10, 5 };
@@ -1170,7 +1241,7 @@ System.out.println(Arrays
 .equals(numbers1, numbers3)); //true
 ```
 #### Sorting an Array
-ArrayÕs can be sorted using static utility method sort defined in Arrays class.
+Array's can be sorted using static utility method sort defined in Arrays class.
 ```
 int rollNos[] = { 12, 5, 7, 9 };
 Arrays.sort(rollNos);
@@ -1360,7 +1431,7 @@ if(isTrue=true){
 ```
 Condition is isTrue=true. This is assignment. Returns true. So, code in if is executed.
 ### Switch Statement
-- A switch statement is used when we have to choose between a list of options. LetÕs look at a few examples of Switch Statements and understand it more.
+- A switch statement is used when we have to choose between a list of options. Let's look at a few examples of Switch Statements and understand it more.
 
 #### Switch Statement Example 1
 Look at the example below: Based on the value in number appropriate switch case statement is executed.
@@ -1384,7 +1455,7 @@ default:
 
 Output of above example is 2.The case which is matched is executed.
 In the above example, there is a break statement in every case. Also, there is a case named default. We will understand them more in the next examples.
-#### Switch Statement Example 2 Ð No Break
+#### Switch Statement Example 2 , No Break
 In this example, there is no break statement in every case. If there is no break, then all the case's until we find break are executed. 
 ```
 number = 2;
@@ -1409,7 +1480,7 @@ Default
 
 Since there is no break after case 2, execution falls through to case 3. There is no break in case 3 as well. So, execution falls through to default. 
 Rule: Code in switch is executed from a matching case until a break or end of switch statement is encountered.
-#### Switch Statement Example 3 Ð Few BreakÕs
+#### Switch Statement Example 3 , Few Break's
 In below example, we have break statements in case 1, 3 and default. There is no break in case 2.
 ```
 number = 2;
@@ -1429,7 +1500,7 @@ default:
 #### Program Output 
 Number is 2 or 3.
 Case 2 matches. Since there is no code in case 2, execution falls through to case 3, executes the println. Break statement takes execution out of the switch
-#### Switch Statement Example 4 Ð LetÕs Default
+#### Switch Statement Example 4 , Let's Default
 default is executed if none of the case's match. Consider the example below. Value of number is 10. And there is no matching case. Default case is executed.
 ```
 number = 10;
@@ -1450,7 +1521,7 @@ default:
 ```
 #### Code Output
 Default
-#### Switch Statement Example 5 Ð Default need not be Last 
+#### Switch Statement Example 5 , Default need not be Last 
 default doesn't need to be the last case in an switch. In the example below default is the first case.
 ```
 number = 10;
@@ -1489,7 +1560,7 @@ switch (number) {
 }    
 ```
 ### While Loop
-- A loop is used to run same code again and again. LetÕs look at an example of while loop.
+- A loop is used to run same code again and again. Let's look at an example of while loop.
 
 #### While loop Example 1
 While is used when it is not clear how many times loop has to be executed.
@@ -1574,7 +1645,7 @@ for (int i = 0,j = 0; i < 10; i++,j--) {
 0123456789
 ```
 #### Enhanced For Loop
-Enhanced for loop can be used to loop around arrayÕs or ListÕs.
+Enhanced for loop can be used to loop around array's or List's.
 ```
 int[] numbers = {1,2,3,4,5};
 
@@ -1671,7 +1742,7 @@ break outer;//Takes out of loop using j
 
 #### Continue Example 1: For loop
 ```
-LetÕs look at an example:
+Let's look at an example:
 for (int i = 0; i < 10; i++) {
     if (i == 5) {
 continue;
@@ -1749,7 +1820,7 @@ WINTER, SPRING, SUMMER, FALL
 Consider the example below:
 
 ```
-package com.rithus.enums;
+package com.in28minutes.enums;
 
 //Enum can be declared outside a class
 enum SeasonOutsideClass {
@@ -1832,7 +1903,7 @@ for (Season season1: Season.values()) {
 ```
 
 Comparing two Enums.
-Values of EnumÕs can be compared using == or the equals function. 
+Values of Enum's can be compared using == or the equals function. 
 ```
 //Comparing two Enums
 Season season1 = Season.FALL;
@@ -1842,7 +1913,7 @@ System.out.println(season1.equals(season2));//true
 ```
 #### Enum Example 2
 ```
-package com.rithus.enums;
+package com.in28minutes.enums;
 
 public class EnumAdvanced {
 
@@ -1925,7 +1996,7 @@ SeasonCustomized(int code) {
 }
 ```
 
-Each of the Season TypeÕs is created by assigning a value for code.
+Each of the Season Type's is created by assigning a value for code.
 ```
 WINTER(1), SPRING(2), SUMMER(3), FALL(4);
 ```
@@ -1956,7 +2027,7 @@ return 20;
 #### Enum Example 3 
 Consider the example below: 
 ```
-package com.rithus.enums;
+package com.in28minutes.enums;
 
 public class EnumAdvanced2 {
 
@@ -2019,7 +2090,7 @@ return 5;
 - Inheritance allows extending a functionality of a class and also promotes reuse of existing code. 
 
 #### Every Class extends Object class
-Every class in java is a sub class of the class Object. When we create a class we inherit all the methods and properties of Object class. LetÕs look at a simple example:
+Every class in java is a sub class of the class Object. When we create a class we inherit all the methods and properties of Object class. Let's look at a simple example:
 
 ```
 String str = "Testing";
@@ -2065,7 +2136,7 @@ hero.act();//Act
 hero.fight();//fight
 ```
 
-LetÕs look at another class extending Actor class - Comedian.
+Let's look at another class extending Actor class - Comedian.
 ```
 //IS-A relationship. Comedian is-a Actor
 public class Comedian extends Actor {
@@ -2120,9 +2191,9 @@ class Dog extends Pet {
 }
 ```
 #### Inheritance and Polymorphism
-Polymorphism is defined as ÒSame CodeÓ giving ÒDifferent BehaviorÓ. LetÕs look at an example. 
+Polymorphism is defined as ÒSame CodeÓ giving ÒDifferent BehaviorÓ. Let's look at an example. 
 #### Polymorphism Example
-LetÕs define an Animal class with a method shout.
+Let's define an Animal class with a method shout.
 ```
 public class Animal {
     public String shout() {
@@ -2131,7 +2202,7 @@ return "Don't Know!";
 }
 ```
 
-LetÕs create two new sub classes of Animal overriding the existing shout method in Animal.
+Let's create two new sub classes of Animal overriding the existing shout method in Animal.
 ```
 class Cat extends Animal {
     public String shout() {
@@ -2198,7 +2269,7 @@ class SomeOtherClass {
 };
 ```
 #### instanceof operators checks if an object is of a particular type.
-LetÕs consider the code below.  We create a few instances of the classes declared above.
+Let's consider the code below.  We create a few instances of the classes declared above.
 ```
 SubClass subClass = new SubClass();
 Object subClassObj = new SubClass();
@@ -2207,7 +2278,7 @@ SubClass2 subClass2 = new SubClass2();
 SomeOtherClass someOtherClass = new SomeOtherClass();
 ```
 
-LetÕs now run instanceof operator on the different instances created earlier.
+Let's now run instanceof operator on the different instances created earlier.
 ```
 System.out.println(subClass instanceof SubClass);//true
 System.out.println(subClass instanceof SuperClass);//true
@@ -2237,7 +2308,7 @@ System.out.println(subClassObj instanceof SomeOtherClass);//false
 - In this tutorial, lets look at a few important object oriented concepts.
 
 #### Class, Object, State and Behavior Example
-LetÕs look at an example:
+Let's look at an example:
 ```
 package com.rithus;
 
@@ -2306,7 +2377,7 @@ this.type = type;
 Run this piece of code:
 ```
 Animal animal = new Animal("Tommy", "Dog");
-System.out.println(animal);//com.rithus.Animal@f7e6a96
+System.out.println(animal);//com.in28minutes.Animal@f7e6a96
 ```
 
 Output does not show the content of animal (what name? and what type?). To show the content of the animal object, we can override the default implementation of toString method provided by Object class.
@@ -2468,7 +2539,7 @@ public int hashCode() {
 }
 ```
 ### Abstract Class
-- An abstract class cannot be instantiated. LetÕs understand about an Abstact class with examples.
+- An abstract class cannot be instantiated. Let's understand about an Abstact class with examples.
 
 #### Abstract Class cannot be instantiated
 In code below ÓAbstractClassExample ex = new AbstractClassExample();Ó gives a compilation error because AbstractClassExample is declared with keyword abstract. 
@@ -2568,7 +2639,7 @@ System.out.println("Abstract Method1");
     //abstractMethod2 is not defined.
 }
 ```
-#### Abstract Class Ð Other Points
+#### Abstract Class , Other Points
 Abstract Methods cannot be paired with final or private access modifiers.
 A variable cannot be abstract.
 ### Constructors
@@ -3001,7 +3072,7 @@ public class CricketScorer {
 }
 ```
 
-LetÕs use the CricketScorer class.
+Let's use the CricketScorer class.
 ```
 public static void main(String[] args) {
 CricketScorer scorer = new CricketScorer();
@@ -3025,7 +3096,7 @@ this.score = score;
 }
 ```
 
-LetÕs use the CricketScorer class.
+Let's use the CricketScorer class.
 
 ```
 public static void main(String[] args) {
@@ -3049,7 +3120,7 @@ score += 4;
 }
 ```
 
-LetÕs use the CricketScorer class.
+Let's use the CricketScorer class.
 ```
 public static void main(String[] args) {
   CricketScorer scorer = new CricketScorer();
@@ -3059,7 +3130,7 @@ public static void main(String[] args) {
 #### Encapsulation Example
 In terms of encapsulation Approach 3 > Approach 2 > Approach 1. In Approach 3, the user of scorer class does not even know that there is a variable called score. Implementation of Scorer can change without changing other classes using Scorer.
 ### Interface
-- An interface defines a contract for  responsibilities (methods) of a class. LetÕs look at a few examples of interfaces.
+- An interface defines a contract for  responsibilities (methods) of a class. Let's look at a few examples of interfaces.
 
 #### Defining an Interface
 An interface is declared by using the keyword interface. Look at the example below: Flyable is an interface.
@@ -3180,7 +3251,7 @@ System.out.println("Sample Implementation for Method1");
     
 }
 ```
-#### Interface Ð Things to Remember
+#### Interface , Things to Remember
 A class should implement all the methods in an interface, unless it is declared abstract.
 A Class can implement multiple interfaces.
 No new checked exceptions can be thrown by implementations of methods in an interface.
@@ -3218,7 +3289,7 @@ Overloaded method invocation is based on the Type of the Reference variable. It 
 - Creating a Sub Class Method with same signature as that of a method in SuperClass is called Method Overriding.
 
 #### Method Overriding Example 1:
-LetÕs define an Animal class with a method shout.
+Let's define an Animal class with a method shout.
 ```
 public class Animal {
     public String bark() {
@@ -3227,7 +3298,7 @@ return "Don't Know!";
 }
 ```
 
-LetÕs create a sub class of Animal Ð Cat  - overriding the existing shout method in Animal.
+Let's create a sub class of Animal , Cat  - overriding the existing shout method in Animal.
 ```
 class Cat extends Animal {
     public String bark() {
@@ -3328,7 +3399,7 @@ animals[1].bark();//Animal bark
 animals[0] contains a reference to Dog Object. When animals[0].bark() method is called method in Dog class is invoked even though the type of reference variable is Animal. 
 animals[1] contains a reference to Animal Object. When animals[1].bark() method is called method in Animal class is invoked.
 #### Covariant Returns
-A sub class is considered to be of same type as its super class. So, in interfaces or abstract class, it is fine to provide implementations using the Sub Class Types as Return Types.(com.rithus.SameType)
+A sub class is considered to be of same type as its super class. So, in interfaces or abstract class, it is fine to provide implementations using the Sub Class Types as Return Types.(com.in28minutes.SameType)
 ### Class Modifiers
 - Let us learn about a few Java Class Modifiers.
 
@@ -3364,7 +3435,7 @@ Default classes are visible inside the same package only.
 Default access is also called Package access.
 #### Default Class Modifier Examples
 #### Default Access Class Example
-package com.rithus.classmodifiers.defaultaccess.a;
+package com.in28minutes.classmodifiers.defaultaccess.a;
 
 ```
 /* No public before class. So this class has default access*/
@@ -3375,7 +3446,7 @@ class DefaultAccessClass {
 
 #### Another Class in Same Package: Has access to default class
 ```
-package com.rithus.classmodifiers.defaultaccess.a;
+package com.in28minutes.classmodifiers.defaultaccess.a;
 
 public class AnotherClassInSamePackage {
     //DefaultAccessClass and AnotherClassInSamePackage 
@@ -3387,7 +3458,7 @@ public class AnotherClassInSamePackage {
 ```
 #### Class in Different Package: NO access to default class
 ```
-package com.rithus.classmodifiers.defaultaccess.b;
+package com.in28minutes.classmodifiers.defaultaccess.b;
 
 public class ClassInDifferentPackage {
     //Class DefaultAccessClass and Class ClassInDifferentPackage
@@ -3425,9 +3496,9 @@ protectedVariable = 5;
 A sub class trying to access through reference/instance variables, will have the same access as a normal class (non sub class).
 Access modifiers cannot be applied to local variables
 #### Access Modifiers Example
-LetÕs consider the following class with variables and methods declared with all 4 access modifiers:
+Let's consider the following class with variables and methods declared with all 4 access modifiers:
 ```
-package com.rithus.membermodifiers.access;
+package com.in28minutes.membermodifiers.access;
 
 public class ExampleClass {
     int defaultVariable;
@@ -3453,7 +3524,7 @@ public class ExampleClass {
 }
 ```
 #### Method Access Modifiers
-LetÕs discuss about access modifiers in order of increasing access.
+Let's discuss about access modifiers in order of increasing access.
 #### private
 a. Private variables and methods can be accessed only in the class they are declared.
 b. Private variables and methods from SuperClass are NOT available in SubClass.
@@ -3469,7 +3540,7 @@ b. Public variables and methods from SuperClass are all available directly in th
 #### Access Modifier Example: Class in Same Package
 Look at the code below to understand what can be accessed and what cannot be.
 ```
-package com.rithus.membermodifiers.access;
+package com.in28minutes.membermodifiers.access;
 
 public class TestClassInSamePackage {
     public static void main(String[] args) {
@@ -3494,9 +3565,9 @@ example.defaultMethod();
 #### Access Modifier Example: Class in Different Package
 Look at the code below to understand what can be accessed and what cannot be.
 ```
-package com.rithus.membermodifiers.access.different;
+package com.in28minutes.membermodifiers.access.different;
 
-import com.rithus.membermodifiers.access.ExampleClass;
+import com.in28minutes.membermodifiers.access.ExampleClass;
 
 public class TestClassInDifferentPackage {
     public static void main(String[] args) {
@@ -3525,7 +3596,7 @@ example.publicMethod();
 #### Access Modifier Example: Sub Class in Same Package
 Look at the code below to understand what can be accessed and what cannot be.
 ```
-package com.rithus.membermodifiers.access;
+package com.in28minutes.membermodifiers.access;
 
 public class SubClassInSamePackage extends ExampleClass {
     
@@ -3549,9 +3620,9 @@ defaultMethod();
 #### Access Modifier Example: Sub Class in Different Package
 Look at the code below to understand what can be accessed and what cannot be.
 ```
-package com.rithus.membermodifiers.access.different;
+package com.in28minutes.membermodifiers.access.different;
 
-import com.rithus.membermodifiers.access.ExampleClass;
+import com.in28minutes.membermodifiers.access.ExampleClass;
 
 public class SubClassInDifferentPackage extends ExampleClass {
     
@@ -3645,9 +3716,9 @@ A volatile variable is one whose value is always written to and read from "main 
 Can be applied only to methods.
 These methods are implemented in native languages (like C)
 ### Static Variables and Methods
-- Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire Class. Each instance of the Class (object) will NOT have a unique copy of a static variable. LetÕs start with a real world example of a Class with static variable and methods.
+- Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire Class. Each instance of the Class (object) will NOT have a unique copy of a static variable. Let's start with a real world example of a Class with static variable and methods.
 
-#### Static Variable/Method Ð Example
+#### Static Variable/Method , Example
 count variable in Cricketer class is static. The method to get the count value getCount() is also a static method. 
 
 ```
@@ -3807,7 +3878,7 @@ If there is no public class, there are no restrictions on file name.
 #### Example Class
 ```
 /* Comments Anywhere*/
-package com.rithus.classcontent;
+package com.in28minutes.classcontent;
 class DefaultClass1{
 	
 }
@@ -4109,10 +4180,10 @@ animal.bark();
     }
 ```
 ### Exception Handling
-- In this tutorial, letÕs understand the need for exception handling and learn how to handle exceptions. 
+- In this tutorial, let's understand the need for exception handling and learn how to handle exceptions. 
 
 #### Example without Exception Handling
-LetÕs first look an example without exception handling. Method main throws an exception because toString method is invoked on a null object.
+Let's first look an example without exception handling. Method main throws an exception because toString method is invoked on a null object.
 ```
     public static void main(String[] args) {
 String str = null;
@@ -4123,9 +4194,9 @@ str.toString();
 Output of above program is
 ```
 Exception in thread "main" java.lang.NullPointerException at
-com.rithus.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:6)
+com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:6)
 ```
-#### Exception Example 2 Ð Propagation of an Exception
+#### Exception Example 2 , Propagation of an Exception
 In this example, main invokes method1, which invokes method2 which throws a NullPointerException. Check the output of this program.
 ```
     public static void main(String[] args) {
@@ -4144,9 +4215,9 @@ str.toString();
 #### Program Output
 ```
 Exception in thread "main" java.lang.NullPointerException at
-com.rithus.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:15)
-at com.rithus.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:10)
-at com.rithus.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:6)
+com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:15)
+at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:10)
+at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:6)
 ```
 
 Look at the stack trace. Exception which is thrown in method2 is propagating to method1 and then to main. This is because there is no exception handling in all 3 methods - main, method1 and method2
@@ -4172,9 +4243,9 @@ System.out.println("Line after Exception - Method 2");
 #### Code Output
 ```
 Exception in thread "main" java.lang.NullPointerException
-at com.rithus.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:18)
-at com.rithus.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:12)
-at com.rithus.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:7)
+at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:18)
+at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:12)
+at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:7)
 ```
 
 Note that none of the lines with text "Line after Exception - ****" are executed. If an exception occurs, lines after the line where exception occurred are not executed. Since all three methods main, method1() and method2() do not have any Exception Handling, exception propagates from method2 to method1 to main.
@@ -4221,7 +4292,7 @@ Few important things to remember from this example.
 Consider the example below: In method2, a connection is opened. However, because of the exception thrown, connection is not closed. This results in unclosed connections.
 
 ```
-package com.rithus.exceptionhandling;
+package com.in28minutes.exceptionhandling;
 
 class Connection {
     void open() {
@@ -4330,7 +4401,7 @@ try {
     }
 ```
 #### Exception Handling Syntax
-LetÕs look at a few quirks about Exception Handling syntax.
+Let's look at a few quirks about Exception Handling syntax.
 #### try without a catch is allowed
 ```
 private static void method2() {
@@ -4350,7 +4421,7 @@ Output:
 ```
 Connection Opened
 Connection Closed
-Exception in thread "main" java.lang.NullPointerException at com.rithus.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:33) at com.rithus.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:22) at com.rithus.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:17)
+Exception in thread "main" java.lang.NullPointerException at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:33) at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:22) at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:17)
 ```
 
 Try without a catch is useful when you would want to do something (close a connection) even if an exception occurred without handling the exception.
@@ -4395,7 +4466,7 @@ Exception is used when a programmer can handle the exception.
 #### Un-Checked Exception
 RuntimeException and classes that extend RuntimeException are called unchecked exceptions. For Example: RuntimeException,UnCheckedException,UnCheckedException2 are unchecked or RunTime Exceptions. There are subclasses of RuntimeException (which means they are subclasses of Exception also.)
 #### Checked Exception
-Other Exception Classes (which donÕt fit the earlier definition). These are also called Checked Exceptions. Exception, CheckedException1,CheckedException2 are checked exceptions. They are subclasses of Exception which are not subclasses of RuntimeException.
+Other Exception Classes (which don't fit the earlier definition). These are also called Checked Exceptions. Exception, CheckedException1,CheckedException2 are checked exceptions. They are subclasses of Exception which are not subclasses of RuntimeException.
 #### Throwing RuntimeException in method
 
 Method addAmounts in Class AmountAdder adds amounts. If amounts are of different currencies it throws an exception.
@@ -4432,8 +4503,8 @@ AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
 #### Output
 ```
 Exception in thread "main" java.lang.RuntimeException: Currencies don't match
-at com.rithus.exceptionhandling.AmountAdder.addAmounts(ExceptionHandlingExample2.java:17)
-at com.rithus.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:28)
+at com.in28minutes.exceptionhandling.AmountAdder.addAmounts(ExceptionHandlingExample2.java:17)
+at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:28)
 ```
 
 Exception message shows the type of exception(java.lang.RuntimeException) and the string message passed to the RuntimeException constructor("Currencies don't match");
@@ -4478,8 +4549,8 @@ AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
 #### Output
 ```
 Exception in thread "main" java.lang.Exception: Currencies don't match
-at com.rithus.exceptionhandling.AmountAdder.addAmounts(ExceptionHandlingExample2.java:17)
-at com.rithus.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:28)
+at com.in28minutes.exceptionhandling.AmountAdder.addAmounts(ExceptionHandlingExample2.java:17)
+at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:28)
 ```
 #### Handling an Exception
 main can also handle the exception instead of declaring throws. Code for it below.
@@ -4535,10 +4606,10 @@ try {
 
 Output: 
 ```
-Exception Handled in Mainclass com.rithus.exceptionhandling.CurrenciesDoNotMatchException
+Exception Handled in Mainclass com.in28minutes.exceptionhandling.CurrenciesDoNotMatchException
 ```
 
-LetÕs change main method to handle Exception instead of CurrenciesDoNotMatchException 
+Let's change main method to handle Exception instead of CurrenciesDoNotMatchException 
 
 ```
 public class ExceptionHandlingExample2 {
@@ -4554,12 +4625,12 @@ try {
 
 Output: 
 ```
-Exception Handled in Mainclass com.rithus.exceptionhandling.CurrenciesDoNotMatchException
+Exception Handled in Mainclass com.in28minutes.exceptionhandling.CurrenciesDoNotMatchException
 ```
 
 There is no change in output from the previous example. This is because Exception catch block can catch Exception and all subclasses of Exception.
 #### Extend RuntimeException
-LetÕs change the class CurrenciesDoNotMatchException to extend RuntimeException instead of Exception
+Let's change the class CurrenciesDoNotMatchException to extend RuntimeException instead of Exception
 ```
 class CurrenciesDoNotMatchException extends RuntimeException{
 }
@@ -4567,7 +4638,7 @@ class CurrenciesDoNotMatchException extends RuntimeException{
 
 Output: 
 ```
-Exception Handled in Mainclass com.rithus.exceptionhandling.CurrenciesDoNotMatchException
+Exception Handled in Mainclass com.in28minutes.exceptionhandling.CurrenciesDoNotMatchException
 ```
 
 Change methods addAmounts in AmountAdder to remove the declaration " throws CurrenciesDoNotMatchException"
@@ -4586,8 +4657,8 @@ AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
 
 Output:
 ```
-Exception in thread "main" com.rithus.exceptionhandling.CurrenciesDoNotMatchException at com.rithus.exceptionhandling.AmountAdder.addAmounts(ExceptionHandlingExample2.java:21)
-at com.rithus.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:30)
+Exception in thread "main" com.in28minutes.exceptionhandling.CurrenciesDoNotMatchException at com.in28minutes.exceptionhandling.AmountAdder.addAmounts(ExceptionHandlingExample2.java:21)
+at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:30)
 ```
 #### Multiple Catch Blocks
 Now, let's add two catch blocks to the main 
@@ -4642,7 +4713,7 @@ try {
 }
     }
 
-	//Output : Exception in thread "main" java.lang.NullPointerException at com.rithus.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:34)
+	//Output : Exception in thread "main" java.lang.NullPointerException at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:34)
 ```
 
 Since NullPointerException is not a sub class of CurrenciesDoNotMatchException it wouldn't be handled by the catch block. Instead a NullPointerException would be thrown out by the main method.
@@ -4798,7 +4869,7 @@ date.setTime(date.getTime() - 6 * 60 * 60 * 1000);
 System.out.println(date);
 ```
 #### Formatting Dates
-Formatting Dates is done by using DateFormat class. LetÕs look at a few examples.
+Formatting Dates is done by using DateFormat class. Let's look at a few examples.
 ```
 //Formatting Dates
 System.out.println(DateFormat.getInstance().format(
@@ -4829,8 +4900,8 @@ DateFormat.MEDIUM).format(date));//Oct 16, 2012
 System.out.println(DateFormat.getDateInstance(
 DateFormat.LONG).format(date));//October 16, 2012
 ```
-#### Format DateÕs using SimpleDateFormat 
-LetÕs look at a few examples of formatting dates using SimpleDateFormat.
+#### Format Date's using SimpleDateFormat 
+Let's look at a few examples of formatting dates using SimpleDateFormat.
 ```
 System.out.println(new SimpleDateFormat("yy-MM-dd")
 .format(date));//12-10-16
@@ -4876,7 +4947,7 @@ calendar.set(Calendar.MONTH, 8);//8 - September
 calendar.set(Calendar.YEAR, 2010);
 ```
 #### Calendar get method
-LetÕs get information about a particular date - 24th September 2010. We use the calendar get method. The parameter passed indicates what value we would want to get from the calendar Ð day or month or year or .. Few examples of the values you can obtain from a calendar are listed below.
+Let's get information about a particular date - 24th September 2010. We use the calendar get method. The parameter passed indicates what value we would want to get from the calendar , day or month or year or .. Few examples of the values you can obtain from a calendar are listed below.
 ```
 System.out.println(calendar.get(Calendar.YEAR));//2010
 System.out.println(calendar.get(Calendar.MONTH));//8
@@ -4887,7 +4958,7 @@ System.out.println(calendar.get(Calendar.DAY_OF_YEAR));//267
 System.out.println(calendar.getFirstDayOfWeek());//1 -> Calendar.SUNDAY
 ```
 #### Calendar - Modify a Date
-We can use the calendar add and roll methods to modify a date. Calendar add method can be used to find a date 5 days or 5 months before the date by passing a Ð5 i.e. a negative 5. 
+We can use the calendar add and roll methods to modify a date. Calendar add method can be used to find a date 5 days or 5 months before the date by passing a ,5 i.e. a negative 5. 
 ```
 calendar.add(Calendar.DATE, 5);
 System.out.println(calendar.getTime());//Wed Sep 29 2010
@@ -4959,7 +5030,7 @@ numberFormat.setParseIntegerOnly(true);
 System.out.println(numberFormat.parse("9876.56"));//9876
 ```
 ### Collection Interfaces
-- Arrays are not dynamic. Once an array of a particular size is declared, the size cannot be modified. To add a new element to the array, a new array has to be created with bigger size and all the elements from the old array copied to new array. Collections are used in situations where data is dynamic. Collections allow adding an element, deleting an element and host of other operations. There are a number of Collections in Java allowing to choose the right Collection for the right context. Before looking into Collection classes, letÕs take a quick look at all the important collection interfaces and the operations they allow. 
+- Arrays are not dynamic. Once an array of a particular size is declared, the size cannot be modified. To add a new element to the array, a new array has to be created with bigger size and all the elements from the old array copied to new array. Collections are used in situations where data is dynamic. Collections allow adding an element, deleting an element and host of other operations. There are a number of Collections in Java allowing to choose the right Collection for the right context. Before looking into Collection classes, let's take a quick look at all the important collection interfaces and the operations they allow. 
 
 #### Collection Interface
 Most important methods declared in the collection interface are the methods to add and remove an element.  add method allows adding an element to a collection and delete method allows deleting an element from a collection.
@@ -5130,8 +5201,8 @@ public interface Iterator<E> {
 - Collections can only hold Objects - not primitives.
 
 #### ArrayList
-ArrayList implements the list interface. So, ArrayList stores the elements in insertion order (by default). ElementÕs can be inserted into and removed from ArrayList based on their position.
-LetÕs look at how to instantiate an ArrayList of integers.
+ArrayList implements the list interface. So, ArrayList stores the elements in insertion order (by default). Element's can be inserted into and removed from ArrayList based on their position.
+Let's look at how to instantiate an ArrayList of integers.
 ```
 List<Integer> integers = new ArrayList<Integer>();
 ```
@@ -5230,7 +5301,7 @@ return name + " " + runs;
 }
 ```
 
-LetÕs now try to sort a list containing objects of Cricketer class.
+Let's now try to sort a list containing objects of Cricketer class.
 ```
 List<Cricketer> cricketers = new ArrayList<Cricketer>();
 cricketers.add(new Cricketer("Bradman", 9996));
@@ -5245,7 +5316,7 @@ System.out.println(cricketers);
 ```
 
 We get a compiler error since Cricketer class does not implement Comparable interface. We were able to sort numbers in earlier example because String class implements Comparable.
-LetÕs make the Cricketer class implement the Comparable Interface.
+Let's make the Cricketer class implement the Comparable Interface.
 ```
 class Cricketer implements Comparable<Cricketer> {
     //OTHER CODE/PROGRAM same as previous
@@ -5268,7 +5339,7 @@ return 0;
 }
 ```
 
-Now letÕs try to sort the cricketers.
+Now let's try to sort the cricketers.
 ```
 Collections.sort(cricketers);
 System.out.println(cricketers);
@@ -5301,7 +5372,7 @@ return 0;
 }
 ```
 
-LetÕs now try to sort the previous defined collection:
+Let's now try to sort the previous defined collection:
 ```
 Collections
 .sort(cricketers, new DescendingSorter());
@@ -5345,7 +5416,7 @@ Linked List extends List and Queue.Other than operations exposed by the Queue in
 ArrayList uses an Array kind of structure to store elements. So, inserting and deleting from an ArrayList are expensive operations. However, search of an ArrayList is faster than LinkedList.
 LinkedList uses a linked representation. Each object holds a link to the next element. Hence, insertion and deletion are faster than ArrayList. But searching is slower.
 ### Set Interface
-- HashSet, LinkedHashSet and TreeSet implement the Set interface. LetÕs look at examples of these collection classes.
+- HashSet, LinkedHashSet and TreeSet implement the Set interface. Let's look at examples of these collection classes.
 
 #### HashSet
 HashSet implements set interface. Sets do not allow duplicates. HashSet does not support ordering.
@@ -5360,7 +5431,7 @@ hashset.add("Dravid");
 System.out.println(hashset);//[Sachin, Dravid]
 ```
 
-LetÕs try to add Sachin to the Set now. Sachin is Duplicate. So will not be added. returns false.
+Let's try to add Sachin to the Set now. Sachin is Duplicate. So will not be added. returns false.
 ```
 hashset.add("Sachin");//returns false since element is not added
 System.out.println(hashset);//[Sachin, Dravid]
@@ -5368,7 +5439,7 @@ System.out.println(hashset);//[Sachin, Dravid]
 #### LinkedHashSet
 LinkedHashSet implements set interface and exposes similar operations to a HashSet. Difference is that LinkedHashSet maintains insertion order. When we iterate a LinkedHashSet, we would get the elements back in the order in which they were inserted.
 #### TreeSet
-TreeSet implements Set, SortedSet and NavigableSet interfaces.TreeSet is similar to HashSet except that it stores elementÕs in Sorted Order.
+TreeSet implements Set, SortedSet and NavigableSet interfaces.TreeSet is similar to HashSet except that it stores element's in Sorted Order.
 ```
 Set<String> treeSet = new TreeSet<String>();
 
@@ -5494,7 +5565,7 @@ System.out.println(tailTreeSet);//[35, 55, 105]
 
 30 is in the range of subTreeSet and headTreeSet. So, it is printed as part of exampleTreeSet, subTreeSet and headTreeSet.
 ```
-//LetÕs now add 65 to the set
+//Let's now add 65 to the set
 exampleTreeSet.add(65);
 
 System.out.println(exampleTreeSet);//[5, 25, 30, 35, 55, 65, 105]
@@ -5535,10 +5606,10 @@ System.out.println(treeSetOrig.pollLast());//55
 System.out.println(treeSetOrig);//[25, 35]
 ```
 ### Map Interface
-- LetÕs take a look at different implementations of the Map interface.
+- Let's take a look at different implementations of the Map interface.
 
 #### HashMap
-HashMap implements Map interface Ð there by supporting key value pairs. LetÕs look at an example.
+HashMap implements Map interface , there by supporting key value pairs. Let's look at an example.
 #### HashMap Example
 ```
 Map<String, Cricketer> hashmap = new HashMap<String, Cricketer>();
@@ -5758,7 +5829,7 @@ static void sort(List, Comparator)
 ### Generics
 - Generics are used to create Generic Classes and Generic methods which can work with different Types(Classes).
 
-#### Need for Generics Ð Example
+#### Need for Generics , Example
 Consider the class below:
 ```
 class MyList {
@@ -5783,7 +5854,7 @@ myList.add("Value 2");
 
 To store integers, we need to create a new class. This is problem that Generics solve. Instead of hard-coding String class as the only type the class can work with, we make the class type a parameter to the class.
 #### Generics Example
-LetÕs replace String with T and create a new class.
+Let's replace String with T and create a new class.
 ```
 class MyListGeneric<T> {
     private List<T> values;
@@ -5876,7 +5947,7 @@ class Dog extends Animal {
 }
 ```
 
-LetÕs create couple of Arrays and Lists as shown below:
+Let's create couple of Arrays and Lists as shown below:
 ```
 Animal[] animalsArray = { new Animal(), new Dog() };
 Dog[] dogsArray = { new Dog(), new Dog() };
@@ -5885,7 +5956,7 @@ List<Animal> animalsList = Arrays.asList(animalsArray);
 List<Dog> dogsList = Arrays.asList(dogsArray); 
 ```
 
-LetÕs create a couple of static methods as shown below:
+Let's create a couple of static methods as shown below:
 ```
     static void doSomethingArray(Animal[] animals) {
 //do Something with Animals
@@ -5943,7 +6014,7 @@ doSomethingListModifiedSuper(animalsList);
 doSomethingListModifiedSuper(dogsList);
 ```
 
-#### Generics and Collections Example 4 Ð extends with interface
+#### Generics and Collections Example 4 , extends with interface
 Below method can be called with a List declared with any type implementing the interface Serializable.
 ```
     static void doSomethingListInterface(List<? extends Serializable> animals) {
@@ -5953,7 +6024,7 @@ Below method can be called with a List declared with any type implementing the i
 //animals.add(new Dog());//COMPILER ERROR!
     }
 ```
-#### Generics and Collections Ð Few more Examples and Rules
+#### Generics and Collections , Few more Examples and Rules
 A method declared with List<Object> can only be called with a List declared with type Object. None of the other classes are valid.
 A method declared with List<?> can be called with a List of any type.
 //A method declared with List<? extends Object> can be called with a List of any type - since all classes are sub classes of Object.
@@ -5962,7 +6033,7 @@ A method declared with List<?> can be called with a List of any type.
 List<? extends Animal> listAnimals = new ArrayList<Dog>(); //COMPILES
 //List<?> genericList = new ArrayList<? extends Animal>(); //COMPILER ERROR
 ```
-#### Generics and Collection Ð Compatibility with old code
+#### Generics and Collection , Compatibility with old code
 Consider the method below: It is declared to accept a Generic ArrayList. The method adds a string to the arraylist.
 ```
     static void addElement(ArrayList something){
@@ -6072,7 +6143,7 @@ Reader methods - read, close (NO FLUSH)
 Writer implementations - FileWriter,BufferedWriter,PrintWriter
 Reader implementations - FileReader,BufferedReader
 ### FileWriter and FileReader
-- FileWriter and FileReader provide basic file writing and reading operations. LetÕs  write an example to write and read from a file using FileReader and FileWriter.
+- FileWriter and FileReader provide basic file writing and reading operations. Let's  write an example to write and read from a file using FileReader and FileWriter.
 
 #### FileWriter Class
 We can write to a file using FileWriter class.
@@ -6118,7 +6189,7 @@ System.out.println(Arrays.toString(temp));//output below
 ```
 
 ### BufferedWriter and BufferedReader
-- BufferedWriter and BufferedReader provide better buffering in addition to basic file writing and reading operations. For example, instead of reading the entire file, we can read a file line by line.  LetÕs  write an example to write and read from a file using FileReader and FileWriter.
+- BufferedWriter and BufferedReader provide better buffering in addition to basic file writing and reading operations. For example, instead of reading the entire file, we can read a file line by line.  Let's  write an example to write and read from a file using FileReader and FileWriter.
 
 #### BufferedWriter Class
 BufferedWriter class helps writing to a class with better buffering than FileWriter.
@@ -6146,7 +6217,7 @@ BufferedReader Constructors only accept another Reader as argument.
 FileReader fileReader3 = new FileReader("BufferedFileName.txt");
 BufferedReader bufferedReader = new BufferedReader(fileReader3);
 ```
-#### BufferedReader Ð Reading a file
+#### BufferedReader , Reading a file
 ```
 String line;
 //readLine returns null when reading the file is completed.
@@ -6158,11 +6229,11 @@ while((line=bufferedReader.readLine()) != null){
 - PrintWriter provides advanced methods to write formatted text to the file. It supports printf function.
 
 #### PrintWriter constructors 
-PrintWriter constructors supports varied kinds of arguments Ð File, String (File Path) and Writer.
+PrintWriter constructors supports varied kinds of arguments , File, String (File Path) and Writer.
 ```
 PrintWriter printWriter = new PrintWriter("PrintWriterFileName.txt");
 ```
-#### PrintWriter Ð Write to a file
+#### PrintWriter , Write to a file
 Other than write function you can use format, printf, print, println functions to write to PrintWriter file.
 ```
 //writes "My Name" to the file
@@ -6222,7 +6293,7 @@ ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
 objectStream.writeObject(new Rectangle(5, 6));
 objectStream.close();
 ```
-#### De-serializing an object Ð Example
+#### De-serializing an object , Example
 Below example show how a object can be deserialized from a serialized file. A rectangle object is deserialized from the file Rectangle.ser
 
 ```
@@ -6235,7 +6306,7 @@ System.out.println(rectangle.length);// 5
 System.out.println(rectangle.breadth);// 6
 System.out.println(rectangle.area);// 30
 ```
-#### Serialization Ð Transient variables
+#### Serialization , Transient variables
 Area in the previous example is a calculated value. It is unnecessary to serialize and deserialize. We can calculate it when needed. In this situation, we can make the variable transient. Transient variables are not serialized. (transient int area;)
 
 ```
@@ -6263,7 +6334,7 @@ System.out.println(rectangle.area);// 0
 ```
 
 Note that the value of rectangle.area is set to 0. Variable area is marked transient. So, it is not stored into the serialized file. And when de-serialization happens area value is set to default value i.e. 0.
-#### Serialization Ð readObject method
+#### Serialization , readObject method
 We need to recalculate the area when the rectangle object is deserialized. This can be achieved by adding readObject method to Rectangle class. In addition to whatever java does usually while deserializing, we can add custom code for the object.
 ```
     private void readObject(ObjectInputStream is) throws IOException,
@@ -6282,7 +6353,7 @@ System.out.println(rectangle.length);// 5
 System.out.println(rectangle.breadth);// 6
 System.out.println(rectangle.area);// 30
 ```
-#### Serialization Ð writeObject method
+#### Serialization , writeObject method
 
 We can also write custom code when serializing the object by adding the writeObject method to Rectange class. writeObject method accepts an ObjectOutputStream as input parameter. To the writeObject method we can add the custom code that we want to run during Serialization.
 
@@ -6323,7 +6394,7 @@ class Wall{
 
 House implements Serializable where Wall doesn't.
 
-LetÕs run this example program:
+Let's run this example program:
 ```
 public class SerializationExamples2 {
     public static void main(String[] args)
@@ -6336,14 +6407,14 @@ fileStream);
 House house = new House(10);
 house.wall = new Wall();
 //Exception in thread "main" java.io.NotSerializableException: 
-//com.rithus.serialization.Wall
+//com.in28minutes.serialization.Wall
 objectStream.writeObject(house);
 objectStream.close();
     }
 }
 
 //Output:
-//Exception in thread "main" java.io.NotSerializableException: com.rithus.serialization.Wall
+//Exception in thread "main" java.io.NotSerializableException: com.in28minutes.serialization.Wall
 //    at java.io.ObjectOutputStream.writeObject0(Unknown Source)
 //    at java.io.ObjectOutputStream.defaultWriteFields(Unknown Source)
 ```
@@ -6376,10 +6447,10 @@ With both these programs, earlier main method would run without throwing an exce
 
 If you try de-serializing, In Example2, state of wall object is retained whereas in Example1, state of wall object is lost.
 #### Serialization and Initialization
-When a class is Serialized, initialization (constructorÕs, initializerÕs) does not take place. The state of the object is retained as it is. 
+When a class is Serialized, initialization (constructor's, initializer's) does not take place. The state of the object is retained as it is. 
 #### Serialization and inheritance
 However in the case of inheritance ( a sub class and super class relationship), interesting things happen.
-LetÕs consider the example code below:
+Let's consider the example code below:
 
 Hero class extends Actor and Hero class implements Serializable. However, Actor class does not implement Serializable.
 ```
@@ -6410,7 +6481,7 @@ danceType = "Default";
 }
 ```
 
-LetÕs run the code below:
+Let's run the code below:
 ```
 FileOutputStream fileStream = new FileOutputStream("Hero.ser");
 ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
@@ -6440,7 +6511,7 @@ When subclass is serializable and superclass is not, the state of subclass varia
 #### Serialization and Static Variables
 Static Variables are not part of the object. They are not serialized.
 ### Threads
-- Threads allow Java code to run in parallel. LetÕs first understand the need for threading and then look into how to create a thread and what is synchronization?
+- Threads allow Java code to run in parallel. Let's first understand the need for threading and then look into how to create a thread and what is synchronization?
 
 #### Need for Threads
 We are creating a Cricket Statistics Application. Let's say the steps involved in the application are
@@ -6450,7 +6521,7 @@ STEP III: Download and Store Fielding Statistics => 15 Minutes
 STEP IV: Merge and Analyze => 25 Minutes
 Steps I, II and III are independent and can be run in parallel to each other. Run individually this program takes 160 minutes.  We would want to run this program in lesser time. Threads can be a solution to this problem. Threads allow us to run STEP I, II and III in parallel and run Step IV when all Steps I, II and III are completed.
 #### Need for Threads Example
-Below example shows the way we would write code usually Ð without using Threads. 
+Below example shows the way we would write code usually , without using Threads. 
 ```
 ThreadExamples example = new ThreadExamples();
 example.downloadAndStoreBattingStatistics();
@@ -6463,7 +6534,7 @@ example.mergeAndAnalyze();
 downloadAndStoreBowlingStatistics starts only after downloadAndStoreBattingStatistics completes execution. downloadAndStoreFieldingStatistics starts only after downloadAndStoreBowlingStatistics completes execution. What if I want to run them in parallel without waiting for the others to complete?
 This is where Threads come into picture.
 #### Creating a Thread Class
-Creating a Thread class in Java can be done in two ways. Extending Thread class and implementing Runnable interface. LetÕs create the BattingStatisticsThread extending Thread class and BowlingStatisticsThread implementing Runnable interface.
+Creating a Thread class in Java can be done in two ways. Extending Thread class and implementing Runnable interface. Let's create the BattingStatisticsThread extending Thread class and BowlingStatisticsThread implementing Runnable interface.
 #### Creating a Thread By Extending Thread class
 Thread class can be created by extending Thread class and implementing the public void run() method.
 Look at the example below: A dummy implementation for BattingStatistics is provided which counts from 1 to 1000.
@@ -6510,8 +6581,8 @@ Thread battingThread2 = new Thread(
 battingInterfaceImpl);
 battingThread2.start();
 ```
-#### Thread Example Ð Complete Program
-LetÕs consider the complete example using all the snippets of code created above. 
+#### Thread Example , Complete Program
+Let's consider the complete example using all the snippets of code created above. 
 ```
 public class ThreadExamples {
     public static void main(String[] args) {
@@ -6572,11 +6643,11 @@ Running Batting Statistics Thread 999
 ```
 #### Discussion about Thread Example
 Above output shows sample execution of the thread. The output will not be the same with every run.
-We can notice that Batting Statistics Thread and the Bowling Statistics Threads are alternating in execution.  Batting Statistics Thread runs upto 10, then Bowling Statistics Thread runs upto 949, Batting Statistics Thread picks up next and runs up to 384 and so on. There is no usual set pattern when Threads run (especially when they have same priority Ð more about this later..). 
+We can notice that Batting Statistics Thread and the Bowling Statistics Threads are alternating in execution.  Batting Statistics Thread runs upto 10, then Bowling Statistics Thread runs upto 949, Batting Statistics Thread picks up next and runs up to 384 and so on. There is no usual set pattern when Threads run (especially when they have same priority , more about this later..). 
 JVM decides which Thread to run at which time. If a Thread is waiting for user input or a network connection, JVM runs the other waiting Threads.
 #### Thread Synchronization
-Since Threads run in parallel, a new problem arises. i.e. What if thread1 modifies data which is being accessed by thread2? How do we ensure that different threads donÕt leave the system in an inconsistent state? This problem is usually called Thread Synchronization Problem.
-LetÕs first look at an example where this problem can occur.
+Since Threads run in parallel, a new problem arises. i.e. What if thread1 modifies data which is being accessed by thread2? How do we ensure that different threads don't leave the system in an inconsistent state? This problem is usually called Thread Synchronization Problem.
+Let's first look at an example where this problem can occur.
 #### Example Program:
 Consider the SpreadSheet class below. It consists of three cells and also a method setAndGetSum which sets the values into the cell and sums them up.
 ```
@@ -6603,7 +6674,7 @@ try {
 }
 ```
 #### Serial Run
-LetÕs first run the above example in a serial way and see what the output would be.
+Let's first run the above example in a serial way and see what the output would be.
 ```
 public static void main(String[] args) {
     SpreadSheet spreadSheet = new SpreadSheet();
@@ -6618,7 +6689,7 @@ System.out.print(spreadSheet.setandGetSum(i, i * 2, i * 3) + " ");
 ```
 Output would contain a multiple of 6 always because we are calling with i, i*2 and i*3 and summing up. So, the result should generally be i*6 with i running from 0 to 3.
 #### Example Program using Threads 
-LetÕs now run the SpreadSheet class in a Thread. Example Code below:
+Let's now run the SpreadSheet class in a Thread. Example Code below:
 ```
 public class ThreadExampleSynchronized implements Runnable {
 
@@ -6642,7 +6713,7 @@ two.start();
 }
 ```
 
-We are creating 2 instances of the Thread using the interface Ð one and two. And start method is invoked to run the thread. Both threads share the instance of SpreadSheet class Ð spreadsheet.
+We are creating 2 instances of the Thread using the interface , one and two. And start method is invoked to run the thread. Both threads share the instance of SpreadSheet class , spreadsheet.
 #### Program Output
 ```
 FIRST RUN    : 0 1 6 9 12 15 18 18
@@ -6650,7 +6721,7 @@ SECOND RUN    : 0 3 6 6 12 15 18 18
 THIRD RUN    : 0 3 6 9 12 15 18 18
 ```
 #### Program Output Discussion
-What we see is that different runs have different results. ThatÕs expected with threads. What is not expected is to see numbers like 1, 9, 15 and 3 in the output. We are expecting to see multiples of 6 in the output(as in the earlier serial run) but we see numbers which are not multiples of 6. Why is this happening?
+What we see is that different runs have different results. That's expected with threads. What is not expected is to see numbers like 1, 9, 15 and 3 in the output. We are expecting to see multiples of 6 in the output(as in the earlier serial run) but we see numbers which are not multiples of 6. Why is this happening?
 This is a result of having two threads run in parallel without synchronization. Consider the code in the setAndGetSum method.
 ```
 int setandGetSum(int a1, int a2, int a3) {
@@ -6666,7 +6737,7 @@ int setandGetSum(int a1, int a2, int a3) {
 
 After setting the value to each cell, there is a call for the Thread to sleep for some time. After Thread 1 sets the value of cell1, it goes to Sleep. So, Thread2 starts executing. If Thread 2 is executing Òreturn cell1 + cell2 + cell3;Ó, it uses cell1 value set by Thread 1 and cell2 and cell3 values set by Thread 2. This results in the unexpected results that we see when the method is run in parallel. What is explained is one possible scenario. There are several such scenarios possible.
 The way you can prevent multiple threads from executing the same method is by using the synchronized keyword on the method. If a method is marked synchronized, a different thread gets access to the method only when there is no other thread currently executing the method.
-LetÕs mark the method as synchronized:
+Let's mark the method as synchronized:
 ```
 synchronized int setandGetSum(int a1, int a2, int a3) {
     cell1 = a1;
@@ -6679,7 +6750,7 @@ synchronized int setandGetSum(int a1, int a2, int a3) {
 }
 ```
 
-Output of the program now is Ò0 0 6 6 12 12 18 18Ó. This is expected output Ð all numbers are multiples of 6.
+Output of the program now is Ò0 0 6 6 12 12 18 18Ó. This is expected output , all numbers are multiples of 6.
 #### Threads & Synchronized Keyword
 A method or part of the method can be marked as synchronized. JVM will ensure that there is only thread running the synchronized part of code at any time.
 However, thread synchronization is not without consequences. There would be a performance impact as the rest of threads wait for the current thread executing a synchronized block. So, as little code as possible should be marked as synchronized.
@@ -6714,7 +6785,7 @@ synchronized (SynchronizedSyntaxExample.class) {
     }
 ```
 #### Static and non static synchronized methods and blocks
-Static methods and block are synchronized on the class. Instance methods and blocks are synchronized on the instance of the class i.e. an object of the class. Static synchronized methods and instance synchronized methods donÕt affect each other. This is because they are synchronized on two different things.
+Static methods and block are synchronized on the class. Instance methods and blocks are synchronized on the instance of the class i.e. an object of the class. Static synchronized methods and instance synchronized methods don't affect each other. This is because they are synchronized on two different things.
 #### States of a Thread
 Different states that a thread can be in are defined the class State.
 - NEW;
@@ -6722,7 +6793,7 @@ Different states that a thread can be in are defined the class State.
 - RUNNING;
 - BLOCKED/WAITING;
 - TERMINATED/DEAD;
-LetÕs consider the example that we discussed earlier.
+Let's consider the example that we discussed earlier.
 #### Example Program
 ```
 LINE 1: BattingStatisticsThread battingThread1 = new BattingStatisticsThread();
@@ -6762,8 +6833,8 @@ Running Batting Statistics Thread 999
 ```
 #### States of a Thread - Examples
 A thread is in NEW state when an object of the thread is created but the start method is not yet called. At the end of line 1, battingThread1 is in NEW state.
-A thread is in RUNNABLE state when it is eligible to run, but not running yet. (A number of Threads can be in RUNNABLE state. Scheduler selects which Thread to move to RUNNING state). In the above example, sometimes the Batting Statistics thread is running and at other time, the Bowling Statistics Thread is running. When Batting Statistics thread is Running, the Bowling Statistics thread is ready to run. ItÕs just that the scheduler picked Batting Statistics thread to run at that instance and vice-versa.  When Batting Statistics thread is Running, the Bowling Statistics Thread is in Runnable state (Note that the Bowling Statistics Thread is not waiting for anything except for the Scheduler to pick it up and run it).
-A thread is RUNNING state when itÕs the one that is currently , what else to say, Running.
+A thread is in RUNNABLE state when it is eligible to run, but not running yet. (A number of Threads can be in RUNNABLE state. Scheduler selects which Thread to move to RUNNING state). In the above example, sometimes the Batting Statistics thread is running and at other time, the Bowling Statistics Thread is running. When Batting Statistics thread is Running, the Bowling Statistics thread is ready to run. It's just that the scheduler picked Batting Statistics thread to run at that instance and vice-versa.  When Batting Statistics thread is Running, the Bowling Statistics Thread is in Runnable state (Note that the Bowling Statistics Thread is not waiting for anything except for the Scheduler to pick it up and run it).
+A thread is RUNNING state when it's the one that is currently , what else to say, Running.
 A thread is in BLOCKED/WAITING/SLEEPING state when it is not eligible to be run by the Scheduler. Thread is alive but is waiting for something. An example can be a Synchronized block. If Thread1 enters synchronized block, it blocks all the other threads from entering synchronized code on the same instance or class. All other threads are said to be in Blocked state.
 A thread is in DEAD/TERMINATED state when it has completed its execution. Once a thread enters dead state, it cannot be made active again.
 #### Thread Priority
@@ -6791,14 +6862,14 @@ thread1.setPriority(8);
 Java also provides predefined constants Thread.MAX_PRIORITY(10), Thread.MIN_PRIORITY(1), Thread.NORM_PRIORITY(5) which can be used to assign priority to a thread.
 #### Thread Join method
 Join method is an instance method on the Thread class. Let's see a small example to understand what join method does.
-LetÕs consider the thread's declared below: thread2, thread3, thread4
+Let's consider the thread's declared below: thread2, thread3, thread4
 ```
 ThreadExample thread2 = new ThreadExample();
 ThreadExample thread3 = new ThreadExample();
 ThreadExample thread4 = new ThreadExample();
 ```
 
-LetÕs say we would want to run thread2 and thread3 in parallel but thread4 can only run when thread3 is finished. This can be achieved using join method.
+Let's say we would want to run thread2 and thread3 in parallel but thread4 can only run when thread3 is finished. This can be achieved using join method.
 #### Join method example
 Look at the example code below:
 ```
@@ -6816,7 +6887,7 @@ Join method also has an overloaded method accepting time in milliseconds as a pa
 thread4.join(2000);
 ```
 In above example, main method thread would wait for 2000 ms or the end of execution of thread4, whichever is minimum.
-#### Thread Ð Static methods
+#### Thread , Static methods
 #### Thread yield method
 Yield is a static method in the Thread class. It is like a thread saying " I have enough time in the limelight. Can some other thread run next?". 
 A call to yield method changes the state of thread from RUNNING to RUNNABLE. However, the scheduler might pick up the same thread to run again, especially if it is the thread with highest priority.
@@ -6824,9 +6895,9 @@ Summary is yield method is a request from a thread to go to Runnable state. Howe
 #### Thread sleep method
 sleep is a static method in Thread class. sleep method can throw a InterruptedException. sleep method causes the thread in execution to go to sleep for specified number of milliseconds.
 #### Thread and Deadlocks
-LetÕs consider a situation where thread1 is waiting for thread2 ( thread1 needs an object whose synchronized code is being executed by thread1) and thread2 is waiting for thread1. This situation is called a Deadlock. In a Deadlock situation, both these threads would wait for one another for ever.
+Let's consider a situation where thread1 is waiting for thread2 ( thread1 needs an object whose synchronized code is being executed by thread1) and thread2 is waiting for thread1. This situation is called a Deadlock. In a Deadlock situation, both these threads would wait for one another for ever.
 #### Deadlock Example
-Consider the example classes below:  Resource represents any resource that you need access to. A network connection, database connection etc. Operation represents an operation that can be done on these resources. LetÕs say that Operation need two resources, resource1 and resource2 and offer two operations method1 and method2. Look at the program below:
+Consider the example classes below:  Resource represents any resource that you need access to. A network connection, database connection etc. Operation represents an operation that can be done on these resources. Let's say that Operation need two resources, resource1 and resource2 and offer two operations method1 and method2. Look at the program below:
 ```
 class Resource {
 }
@@ -6861,7 +6932,7 @@ synchronized (resource2) {
 ```
 
 Method1 executes some code on resource1 first and then executes some code on resource2. Method2 does the reverse. We use the sleep method call to simulate the fact that these operation could take some time to complete.
-LetÕs create two threads sharing the above operation using the code below: Threads one and two now share object operation.  The thread code runs both operations method1 and method2.
+Let's create two threads sharing the above operation using the code below: Threads one and two now share object operation.  The thread code runs both operations method1 and method2.
 ```
 public class ThreadDeadlock implements Runnable {
 
@@ -6888,7 +6959,7 @@ two.start();
 ```
 
 When executed this program just hangs, because of a deadlock.
-To make what is happening behind the screens more clear, LetÕs add in a few sysoutÕs in the Operation class.
+To make what is happening behind the screens more clear, Let's add in a few sysout's in the Operation class.
 ```
 class SomeOperation {
     Resource resource1 = new Resource();
@@ -6975,7 +7046,7 @@ We have to find a way to stop the main method from running until sumUptoMillion 
 wait and notify methods can only be used in a synchronized context.
 #### Example with wait and notify methods
 ```
-package com.rithus.threads;
+package com.in28minutes.threads;
 
 class Calculator extends Thread {
     long sumUptoMillion;
@@ -7055,17 +7126,17 @@ javac -source 1.3 OldCode.java => assert can be used as identifier
 
 Assertions can easily be enabled and disabled. Assertions are disabled by default.
 #### Enabling Assertions
-Enable assertions: java -ea com.rithus.AssertExamples
- (OR) java -enableassertions com.rithus.AssertExamples
+Enable assertions: java -ea com.in28minutes.AssertExamples
+ (OR) java -enableassertions com.in28minutes.AssertExamples
 #### Disable Assertions
-Disable assertions: java -da com.rithus.AssertExamples
-(OR) java -disableassertions com.rithus.AssertExamples
+Disable assertions: java -da com.in28minutes.AssertExamples
+(OR) java -disableassertions com.in28minutes.AssertExamples
 #### Enable Assertions in specific packages
 Selectively enable assertions in a package only
 java -ea:com.rithus
 
 Selectively enable assertions in a package and its subpackages only
-java -ea:com.rithus...
+java -ea:com.in28minutes...
 #### Enable assertions including system classes
 java -ea -esa
 #### Basic assert condition example
@@ -7099,7 +7170,7 @@ In public method, only use assertions to check for cases which are never suppose
 - Garbage Collection is a name given to automatic memory management in Java.  Aim of Garbage Collection is to Keep as much of heap available (free) for the program as possible. JVM removes objects on the heap which no longer have references from the heap.
 
 #### Garbage Collection Example
-LetÕs say the below method is called from a function.
+Let's say the below method is called from a function.
 
 ```
 void method(){
@@ -7117,8 +7188,8 @@ JVM recognizes this and removes the object from the heap. This is called Garbage
 Garbage Collection runs at the whims and fancies of the JVM (it isn't as bad as that). Possible situations when Garbage Collection might run are 
 1.when available memory on the heap is low
 2.when cpu is free
-#### Garbage Collection Ð Important Points
-Programmatically, we can request (remember itÕs just a request - Not an order) JVM to run Garbage Collection by calling System.gc() method.
+#### Garbage Collection , Important Points
+Programmatically, we can request (remember it's just a request - Not an order) JVM to run Garbage Collection by calling System.gc() method.
 
 JVM might throw an OutOfMemoryException when memory is full and no objects on the heap are eligible for garbage collection.
 
@@ -7163,7 +7234,7 @@ Count when Static Initializer is run is 0
 
 Even though three instances are created static initializer is run only once.
 #### Instance Initializer Block
-LetÕs look at an example
+Let's look at an example
 ```
 public class InitializerExamples {
     static int count;
@@ -7277,8 +7348,8 @@ public void removeSomeListener(MyListener listener){
 }
 ```
 ### Regular Expressions
-- Regular Expressions make parsing, scanning and splitting a string very easy. We will first look at how you can evaluate a regular expressions in Java Ð using Patter, Matcher and Scanner classes. We will then look into how to write a regular expression.
-#### Regular Expression in Java Ð Matcher and Pattern Example
+- Regular Expressions make parsing, scanning and splitting a string very easy. We will first look at how you can evaluate a regular expressions in Java , using Patter, Matcher and Scanner classes. We will then look into how to write a regular expression.
+#### Regular Expression in Java , Matcher and Pattern Example
 Code below shows how to execute a regular expression in java.
 ```
 private static void regex(String regex, String string) {
@@ -7297,7 +7368,7 @@ find() method returns true until there is a match for the regular expression in 
 start() method gives the starting index of the match.
 group() method returns the matching part of the string.
 #### Examples
-LetÕs run this method with a regular expression to search for Ò12Ó in the string Ò122345612Ó.
+Let's run this method with a regular expression to search for Ò12Ó in the string Ò122345612Ó.
 ```
 regex("12", "122345612");
 ```
@@ -7308,7 +7379,7 @@ Output
 ```
 Output shows the matching strings 12, 12. Also, shown in the output is the starting index of each match. First 12 is present starting at index 0. The next 12 in the string starts at index 7.
 #### Creating Regular Expressions for Java
-LetÕs test regular expressions by using the method we created earlier: regex().
+Let's test regular expressions by using the method we created earlier: regex().
 #### Simple Regular Expressions
 Search for 12 in the string
 ```
@@ -7341,7 +7412,7 @@ look for a,b,c,d,1,2,3,4 =>Note that this does not look for capital A,B,C,D
 regex("[a-d1-4]", "azbkdm 15AB");//[0<a>, 2<b>, 4<d>, 7<1>]
 regex("[a-dA-D]", "abyzCD");//[0<a>, 1<b>, 4<C>, 5<D>]
 ```
-#### Regular Expressions Ð Multiple Characters
+#### Regular Expressions , Multiple Characters
 + is used in regular expression to look for 1 or more characters. For example a+ looks for 1 or more character a's.
 ```
 regex("a+", "aaabaayza");//[0<aaa>, 4<aa>, 8<a>]
@@ -7352,7 +7423,7 @@ Look for one or more characters from a to z (only small case).
 regex("[a-z]+", "abcZ2xyzN1yza");//[0<abc>, 5<xyz>, 10<yza>]
 //0123456789012
 ```
-#### Regular Expressions Ð Look for Repetitions
+#### Regular Expressions , Look for Repetitions
 Regular expressions can be joined together to look for a combination.
 a+b+ looks 1 or more a's and 1 or more b's next to each other. Notice that only a's or only b's do not match.
 ```
@@ -7379,7 +7450,7 @@ regex("[^a]+", "bcadefazyx");//[0<bc>, 3<def>, 7<zyx>]
 regex("[^abcd]+a", "efgazyazyzb");//[0<efga>, 4<zya>]
 ```
 #### . matches any character
-a.c looks for ÔaÕ followed by any character followed by ÔcÕ. abc => match abbc => no match (. matches 1 character only)
+a.c looks for Ôa' followed by any character followed by Ôc'. abc => match abbc => no match (. matches 1 character only)
 ```
 regex("a.c", "abca ca!cabbc");//[0<abc>, 3<a c>, 6<a!c>]
 ```
@@ -7401,7 +7472,7 @@ Example: If I want to look for ...(3 dots), we should use \.\.\. To represent \.
 regex("\\.\\.\\.", "...a....b...c");//[0<...>, 4<...>, 9<...>]
 ```
 #### Regular Expression using Scanner class
-Below code shows how Scanner class can be used to execute regular expression.  findInLine method in Scanner returns the match Ð if a match is found. Otherwise, it returns null.
+Below code shows how Scanner class can be used to execute regular expression.  findInLine method in Scanner returns the match , if a match is found. Otherwise, it returns null.
 ```
 private static void regexUsingScanner(String regex,
 String string) {
@@ -7488,3 +7559,4 @@ Where are objects created? Where are strings created?
 
 ### TODO
 - replace ``` with ```java at start of code
+- //Getters and Setters are eliminated to keep the example short
