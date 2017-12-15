@@ -12,7 +12,7 @@ Review Java 9 Concepts at Jet Speed.
 - Rich API
 - Great IDE's
 - Omnipresent 
-   - Web Applications (JSP, Servlets, Spring, Struts..)
+   - Web Applications (Java EE (JSP, Servlets), Spring, Struts..)
    - Mobile Apps(Android) 
    - Microservices (Spring Boot)
 
@@ -984,7 +984,6 @@ System.out.println(aReference == bReference);//true
 - Logical Operators are &&, ||, |, &, ! and ^.
 
 #### Short Circuit And Operator - &&
-
 - True when both operands are true.
 
 ```
@@ -1004,7 +1003,7 @@ System.out.println(false || true);//true
 System.out.println(false || false);//false
 ```
 
-Logical Operators work with boolean values but not numbers.
+> Certification Tip : Logical Operators work with boolean values but not numbers.
 
 ```
 //System.out.println(5 || 6);//COMPILER ERROR
@@ -1026,6 +1025,8 @@ System.out.println(i);//i remains 10, as ++i expressions are not executed.
 #### Operator & and |
 - Logical Operators &, | are similar to &&, || except that they don't short ciruit. 
 - They execute the second expression even if the result is decided.
+
+> Certification Tip : While & and | are very rarely used, it is important to understand them from a certification perspective.
 
 ```
 int j = 10;
@@ -1049,185 +1050,94 @@ System.out.println(!false);//true
 System.out.println(!true);//false
 ```
 ### Arrays
+- TODO : Why do we need arrays?
 - Arrays allow storing multiple values of same type.
+- Once An Array is created, its size cannot be increased or decreased. 
+- New Arrays are always initialized with default values.
+   - byte,short,int,long    0 
+   - float,double 0.0 
+   - boolean false
+   - object    null
 
-#### Array Basics
-Let's discuss about basics of declaring and creating an Array.
-#### Declare an Array
-All below ways are legal. However, using the third format of declaration is recommended.
 ```
-int marks[]; //Not Readable
-int[] runs; //Not Readable
-int[] temperatures;//Recommended 
-```
+//Declaring an Array
+int[] marks;
 
-Declaration of an Array should not include size. 
-```
-//int values[5];//Compilation Error!
-```
-
-Declaring 2D Array Examples:
-```
-int[][] matrix1; //Recommended
-int[] matrix2[]; //Legal but not readable. Avoid.
-```
-#### Creating an array
-```
+// Creating an array
 marks = new int[5]; // 5 is size of array
-```
 
-Size of an array is mandatory to create an array.
-```
-//marks = new int[];//COMPILER ERROR
-```
+int marks2[] = new int[5];//Declaring and creating an array in same line.
 
-Once An Array is created, its size cannot be changed. 
-Declaring and creating an array in same line.
-```
-int marks2[] = new int[5];
-```
-#### Default Values in Array
-New Arrays are always initialized with default values.
-```
-int marks2[] = new int[5];
-System.out.println(marks2[0]);//0
-```
+System.out.println(marks2[0]);//New Arrays are always initialized with default values - 0
 
-Default Values
-byte,short,int,long    0 
-float,double0.0 
-boolean false
-object    null
-#### Assigning values to an array
-Index of elements in an array runs from 0 to length , 1. We can use the index of an element to store a value into an array.
-```
+//Index of elements in an array runs from 0 to length - 1
 marks[0] = 25;
 marks[1] = 30;
 marks[2] = 50;
 marks[3] = 10;
 marks[4] = 5;
-```
 
-Declare, Create and Initialize Array on same line.
-```
-int marks3[] = { 25, 30, 50, 10, 5 };
-```
+System.out.println(marks[2]);//Printing a value from array
 
-Leaving additional comma is not a problem. (note that comma after 5)
-```
-int marks4[] = { 25, 30, 50, 10, 5, };
-```
+//Printing a 1D Array
+int marks5[] = { 25, 30, 50, 10, 5 };
+System.out.println(marks5); //[I@6db3f829
+System.out.println(
+    Arrays.toString(marks5));//[25, 30, 50, 10, 5]
 
-Printing a value from array
-```
-System.out.println(marks[2]);
-```
+int length = marks.length;//Length of an array: Property length
 
-Creating a String Array:
-```
-String[] daysOfWeek = { "Sunday", "Monday",
-"Tuesday", "Wednesday", "Thursday",
-"Friday", "Saturday" };
-```
-
-Access 10th element when array has only length 5
-```
-//Runtime Exception: ArrayIndexOutOfBoundsException
-//System.out.println(marks[10]);
-```
-#### Length of an array: Property length
-```
-int length = marks.length;
-```
-#### Looping around an array - Enhanced for loop
-Name of the variable is mark and the array we want to loop around is marks.
-```
+//Enhanced For Loop
 for (int mark: marks) {
     System.out.println(mark);
 }
-```
-#### Fill array with a value
-```
+
+//Fill array with a value
 Arrays.fill(marks, 100); //All array values will be 100
-```
-#### Array Rules
-#### Array can contain only values of same type. 
-```
-//COMPILE ERROR!!
-//int marks4[] = {10,15.0}; //10 is int 15.0 is float
+
+//String Arrays
+String[] daysOfWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 ```
 
-#### Cross assigment of primitive arrays is ILLEGAL
-```
-int[] ints = new int[5];
-short[] shorts = new short[5];
-//ints = shorts;//COMPILER ERROR
-//ints = (int[])shorts;//COMPILER ERROR
-```
 #### 2D Arrays
-Let's create a matrix with 2 rows and 3 columns.
+
+Best way to visualize a 2D array is as an array of arrays.
+
 ```
 int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
 
 int[][] matrixA = new int[5][6]; 
-```
 
-First dimension is necessary to create a 2D Array. Best way to visualize a 2D array is as an array of arrays.
-```
-matrixA = new int[3][];//FINE
-//matrixA = new int[][5];//COMPILER ERROR
-//matrixA = new int[][];//COMPILER ERROR
-```
-#### Ragged 2D Array
-Each row in a 2D Array can have a different size. This is called a Ragged Array.
-```
-matrixA = new int[3][];//FINE
-matrixA[0] = new int[3];
-matrixA[0] = new int[4];
-matrixA[0] = new int[5];
-```
-#### Accessing elements from 2D array:
-```
+//Accessing elements from 2D array:
 System.out.println(matrix[0][0]); //1
 System.out.println(matrix[1][2]); //6
-```
-#### Looping a 2D array
-Looping a 2D array can be done using enhanced for loop. First loop lists all the rows. The second loop scans all row elements.
-```
+
+//Looping a 2D array
 for (int[] array: matrix) {
     for (int number: array) {
          System.out.println(number);
     }
 }
-```
-#### Print Array Content
-Let's look at different methods in java to print the content of an array.
-#### Printing a 1D Array
-```
-int marks5[] = { 25, 30, 50, 10, 5 };
-System.out.println(marks5); //[I@6db3f829
-System.out.println(
-    Arrays.toString(marks5));//[25, 30, 50, 10, 5]
-```
-#### Printing a 2D Array
-```
+
+// Printing a 2D Array
 int[][] matrix3 = { { 1, 2, 3 }, { 4, 5, 6 } };
 System.out.println(matrix3); //[[I@1d5a0305
 System.out.println(
+
 Arrays.toString(matrix3)); 
 //[[I@6db3f829, [I@42698403]
-System.out.println(
-Arrays.deepToString(matrix3)); 
+
+System.out.println(Arrays.deepToString(matrix3)); 
 //[[1, 2, 3], [4, 5, 6]]
 
 System.out.println(matrix3[0]);//[I@86c347 - matrix3[0] is a 1D Array
-System.out.println(
-Arrays.toString(matrix3[0]));//[1, 2, 3]
+System.out.println(Arrays.toString(matrix3[0]));//[1, 2, 3]
 ```
-#### Comparing Arrays
-- Arrays can be compared using static method ```equals``` defined in ```Arrays``` class. 
-- Two arrays are equal only if they have the same numbers in all positions and have the same size.
+
+#### Other Array Operations
+
 ```
+//Comparing Arrays
 int[] numbers1 = { 1, 2, 3 };
 int[] numbers2 = { 4, 5, 6 };
 
@@ -1235,82 +1145,124 @@ System.out.println(Arrays
 .equals(numbers1, numbers2)); //false
 
 int[] numbers3 = { 1, 2, 3 };
+
 System.out.println(Arrays
 .equals(numbers1, numbers3)); //true
-```
-#### Sorting an Array
-Array's can be sorted using static utility method ```sort`` defined in ```Arrays``` class.
-```
+
+// Sorting an Array
+
 int rollNos[] = { 12, 5, 7, 9 };
 Arrays.sort(rollNos);
-System.out.println(
-Arrays.toString(rollNos));//[5, 7, 9, 12]
+System.out.println(Arrays.toString(rollNos));//[5, 7, 9, 12]
+
 ```
+
 #### Array of Objects
+
 ```
 Person[] persons = new Person[3];
-```
 
-Creating an array of Persons creates 4 Reference Variables to Person. It does not create the Person Objects
-```
+//By default, an array of 3 reference variables is created.
+//The person objects are not created
 System.out.println(persons[0]);//null
-```
 
-To assign objects, we would need to create them.
-#### Example 1
-```
+//Let's create the new objects
 persons[0] = new Person();
 persons[1] = new Person();
 persons[2] = new Person();
-```
 
-Creating and initializing person array
-```
+//Creating and initializing person array in one statement
 Person[] personsAgain = { new Person(),new Person(),new Person()};
-```
-#### Another Example
-```
+
+//Another example
 Person[][] persons2D = 
     {
 		{ new Person(),new Person(),new Person()},
 		{ new Person(),new Person()}
     };
 ```
-### If Else Condition
-- If else is used to conditionally execute code. 
 
-#### If Else Condition - Basic Example
-Code inside If is executed only if the condition is true.
+
+#### Array Certification Tips and Puzzles
+```
+
+//You can Declare, Create and Initialize Array on same line.
+int marks3[] = { 25, 30, 50, 10, 5 };
+
+//Leaving additional comma is not a problem. (note that comma after 5)
+int marks4[] = { 25, 30, 50, 10, 5, };
+
+
+int marks[]; //Not Readable
+int[] runs; //Not Readable
+
+
+//int values[5];//Compilation Error!Declaration of an Array should not include size. 
+
+//marks = new int[];//COMPILER ERROR! Size of an array is mandatory to create an array.
+
+
+//Declaring 2D Array Examples:
+int[][] matrix1; //Recommended
+int[] matrix2[]; //Legal but not readable. Avoid.
+
+//Access 10th element when array has only length 5
+//Runtime Exception: ArrayIndexOutOfBoundsException
+//System.out.println(marks[10]);
+
+//Array can contain only values of same type.
+
+//COMPILE ERROR!!
+//int marks4[] = {10,15.0}; //10 is int 15.0 is float
+
+//Cross assigment of primitive arrays is ILLEGAL
+int[] ints = new int[5];
+short[] shorts = new short[5];
+//ints = shorts;//COMPILER ERROR
+//ints = (int[])shorts;//COMPILER ERROR
+
+
+//The first dimension of a 2D array is mandatory
+matrixA = new int[3][];//FINE
+//matrixA = new int[][5];//COMPILER ERROR
+//matrixA = new int[][];//COMPILER ERROR
+
+//Each row in a 2D Array can have a different size. This is called a Ragged Array.
+matrixA = new int[3][];//FINE
+matrixA[0] = new int[3];
+matrixA[0] = new int[4];
+matrixA[0] = new int[5];
+```
+
+
+### If Else Condition
+- Conditionally execute code! 
+- Code inside If is executed only if the condition is true.
+
+// Basic Example
 ```
 if(true){
     System.out.println("Will be printed");
 }
-```
 
-Statement inside the if condition below is not executed.
-```
 if(false){
     System.out.println("Will NOT be printed");//Not executed
 }
-```
-#### If Else Example 1
-```
+
+//Example 1
 int x = 5;
 
 if(x==5){
     System.out.println("x is 5");//executed since x==5 is true
 }
 
+//Example 2
 x = 6;
 if(x==5){
     System.out.println("x is 5");//Not executed since x==5 is false
 }
-```
 
-In above example x==5 is true when x is 5. x==5 is false when x is 6. 
-#### If Else Example 2: Else
-If condition is true code in if is executed, else code in else is executed.
-```
+//Example 3
 int y = 10;
 
 if(y==10){
@@ -1319,24 +1271,24 @@ if(y==10){
     System.out.println("Y is Not 10");
 }
 
+//Example 4
 y = 11;
 
 if(y==10){
     System.out.println("Y is 10");//NOT executed
 } else {
-    System.out.println("Y is Not 10");//executed-condn y==10 is false
+    System.out.println("Y is Not 10");//executed
 }
-```
-#### Nested if else example
-Look at the example below. The code in first if condition which is true is executed. If none of the if conditions are true, then code in else is executed.
-```
+
+//Example 5
 int z = 15;
+//Only one condition is executed. Rest of the conditions are skipped.
 if(z==10){
     System.out.println("Z is 10");//NOT executed
 } else if(z==12){
     System.out.println("Z is 12");//NOT executed
 } else if(z==15){
-    System.out.println("Z is 15");//executed. Rest of the if else are skipped.
+    System.out.println("Z is 15");//executed. 
 } else {
     System.out.println("Z is Something Else.");//NOT executed
 }
@@ -1351,18 +1303,18 @@ if(z==10){
 } else {
     System.out.println("Z is Something Else.");//executed
 }
-```
-#### If else Example: without Blocks
-If blocks (code between { and } ) are not used, only the first statement after the if is considered to be part of the if statement.
-```
+
+//If else Example: without Blocks
 int number = 5;
-if(number < 0) //condn is false. So the line in if is not executed.
+if(number < 0) 
     number = number + 10; //Not executed
     number++; //This statement is not part of if. Executed.
 System.out.println(number);//prints 6
 ```
-#### Nested If else Example: Guess the output
+#### If else Puzzles
+
 ```
+//Puzzle 1
 int k = 15;
 if (k > 20) {
     System.out.println(1);
@@ -1373,11 +1325,12 @@ if (k > 20) {
 } else {
     System.out.println(4);
 }
-```
 
-Output is 2. Once a condition in nested-if-else is true the rest of the code is not executed.  
-#### Nested If else example 2: Guess the output
-```
+//Output is 2. 
+//Once a condition in nested-if-else is true the rest of the code is not executed.  
+
+
+//Puzzle 2
 int l = 15;
 
 if(l<20)
@@ -1388,8 +1341,11 @@ else
     System.out.println("Who am I?");
 ```
 
-Output is "l<20" followed by "Who am I?" on next line. else belong to the last if before it unless brackets ({}) are used.
-#### Nested If else example 3: Guess the output
+//Output is "l<20" followed by "Who am I?" on next line. 
+//else belong to the last if before it unless brackets ({}) are used.
+```
+
+Puzzle 3
 ```
 int m = 15;
 
@@ -1398,10 +1354,11 @@ if(m>20)
 System.out.println("m>20");
     else
 System.out.println("Who am I?");
-```
 
-Nothing is printed to output. Above code is similar to code below
-```
+//Nothing is printed to output. 
+
+//Code above is similar to the code snippet shown below
+
 if(m>20) {//Condn is false. So, code in if is not executed
     if(m<20)
 System.out.println("m>20");
@@ -1409,30 +1366,41 @@ System.out.println("m>20");
 System.out.println("Who am I?");
 }
 ```
-#### If else condition should be boolean
+
+Puzzles Continued
 ```
+
+//Puzzle 4
+
 int x1 = 0;
 //Condition in if should always be boolean
 //if(x1) {} //COMPILER ERROR
 //if(x1=0) {}//COMPILER ERROR. Using = instead of ==
-```
-#### If else tricky example
-```
+//If else condition should be boolean
+
+//Puzzle 5
+
 boolean isTrue = false;
+
 if(isTrue==true){
     System.out.println("TRUE TRUE");//Will not be printed
 }
+
 if(isTrue=true){
     System.out.println("TRUE");//Will be printed.
 }
-```
-Condition is isTrue=true. This is assignment. Returns true. So, code in if is executed.
-### Switch Statement
-- A switch statement is used when we have to choose between a list of options. Let's look at a few examples of Switch Statements and understand it more.
 
-#### Switch Statement Example 1
-Look at the example below: Based on the value in number appropriate switch case statement is executed.
+//Condition is isTrue=true. This is assignment. Returns true. So, code in if is executed.
+
 ```
+
+### Switch Statement
+- Choose between a set of options.
+- From Java 6, String can be used as the switch argument.
+
+```
+//Example 1
+
 int number = 2;
 switch (number) {
 case 1:
@@ -1448,13 +1416,16 @@ default:
     System.out.println("Default");
     break;
 }
-```
+// Output of above example is 2.The case which is matched is executed.
 
-Output of above example is 2.The case which is matched is executed.
-In the above example, there is a break statement in every case. Also, there is a case named default. We will understand them more in the next examples.
-#### Switch Statement Example 2 , No Break
-In this example, there is no break statement in every case. If there is no break, then all the case's until we find break are executed. 
 ```
+Important Tips
+- There is a break statement in every case. If there is no break statement, switch continues to execute other cases.
+- There is a case named default.  If none of the cases match default case is executed.
+
+
+```
+//Switch Statement Example 2 , No Breaks
 number = 2;
 switch (number) {
 case 1:
@@ -1476,9 +1447,11 @@ Default
 ```
 
 Since there is no break after case 2, execution falls through to case 3. There is no break in case 3 as well. So, execution falls through to default. 
-Rule: Code in switch is executed from a matching case until a break or end of switch statement is encountered.
-#### Switch Statement Example 3 , Few Break's
-In below example, we have break statements in case 1, 3 and default. There is no break in case 2.
+
+> Code in switch is executed from a matching case until a break or end of switch statement is encountered.
+
+
+Switch Statement Example 3 , Few Break's
 ```
 number = 2;
 switch (number) {
@@ -1494,11 +1467,15 @@ default:
     break;
 }
 ```
-#### Program Output 
+Program Output 
+```
 Number is 2 or 3.
-Case 2 matches. Since there is no code in case 2, execution falls through to case 3, executes the println. Break statement takes execution out of the switch
-#### Switch Statement Example 4 , Let's Default
-default is executed if none of the case's match. Consider the example below. Value of number is 10. And there is no matching case. Default case is executed.
+```
+Case 2 matches. Since there is no code in case 2, execution falls through to case 3, executes the println. Break statement takes execution out of the switch.
+
+Switch Statement Example 4 , Let's Default
+- default is executed if none of the case's match. 
+
 ```
 number = 10;
 switch (number) {
@@ -1516,10 +1493,12 @@ default:
     break;
 }
 ```
-#### Code Output
+Code Output
+```
 Default
-#### Switch Statement Example 5 , Default need not be Last 
-default doesn't need to be the last case in an switch. In the example below default is the first case.
+```
+
+Switch Statement Example 5 - Default need not be Last 
 ```
 number = 10;
 switch (number) {
@@ -1537,18 +1516,21 @@ case 3:
     break;
 }
 ```
-#### Example Output 
+Output 
 ```
 Default
 ```
-#### Switch statement Example 6 - char, byte, short, int or enum  
+#### Switch statement Example 6
+
+>TODO Check this up.. Its supports String. Does it support others as well?
+
 Switch can be used only with char, byte, short, int or enum
 ```
 long l = 15;
 /*switch(l){//COMPILER ERROR. Not allowed.
 }*/
-```
-#### Case value should be a compile time constant.
+
+Case value should be a compile time constant.
 ```
 number = 10;
 switch (number) {
@@ -1556,11 +1538,11 @@ switch (number) {
 //case number://COMPILER ERROR. Should be constant.
 }    
 ```
-### While Loop
-- A loop is used to run same code again and again. Let's look at an example of while loop.
 
-#### While loop Example 1
-While is used when it is not clear how many times loop has to be executed.
+## Loops
+A loop is used to run same code again and again.
+
+### While Loop
 ```
 int count = 0;
 
@@ -1568,15 +1550,11 @@ while(count < 5){//while this condn is true, loop is executed.
     System.out.print(count);
     count++;
 }
-```
-#### Program Output
-```
-01234
+//Output - 01234
 ```
 
-While count is less than 5, code in the while loop is executed. Count starts at 0 and incremented to 1,2,3,4 and 5. When count is 5, the while condition (count < 5) turns to be false. So, execution stops when count is 5. Output printed is 01234.
-#### While loop Example 2
-Depending on the condition, code in while might not be executed at all.
+While loop Example 2
+
 ```
 count = 5;
 while(count < 5){//condn is false. So, code in while is not executed.
@@ -1585,12 +1563,11 @@ while(count < 5){//condn is false. So, code in while is not executed.
 }//Nothing is printed to output
 ```
 
-In above example, count is initialized to 5. While loop checks for the condition Òcount < 5Ó. Since this condition is false at the outset, the code in while is never executed.
 ### Do While Loop
-- do while also is used when it is not clear how many times loop has to be executed. However, the difference between a while and a do while is that the code in do while is executed at least once.
+- The difference between a while and a do while is that the code in do while is executed at least once. 
+- In a do while loop, condition check occurs after the code in loop is executed once.
 
-#### Do While loop Example 1
-Output is same as while loop.
+Do While loop Example 1
 ```
 int count = 0;
 do{
@@ -1599,8 +1576,8 @@ do{
 }while(count < 5);//while this condn is true, loop is executed.
 //output is 01234
 ```
-#### Do While loop Example 2
-Code in do while is executed atleast once.
+
+Do While loop Example 2
 ```
 count = 5;
 do{
@@ -1609,37 +1586,29 @@ do{
 }while(count < 5);
 //output is 5
 ```
-In a do while loop, condition check occurs after the code in loop is executed once.
-### For Loop
-- For loop is used to loop code specified number of times.
 
-#### For Loop Example 1
-Example of a For Loop
+### For Loop
+
+For loop is used to loop code specified number of times.
+
+For Loop Example 1
 ```
 for (int i = 0; i < 10; i++) {
     System.out.print(i);
 }
+//Output - 0123456789
 ```
-#### Program Output 
-```
-0123456789
-```
-#### For Loop Syntax
-For loop statement has 3 parts
+Syntax - For loop statement has 3 parts
 - Initialization => int i=0. Initialization happens the first time a for loop is run.
 - Condition => i<10. Condition is checked every time before the loop is executed.
 - Operation (Increment or Decrement usually) => i++. Operation is invoked at the start of every loop (except for first time).
-#### For Loop Example 2: Comma
 
-There can be multiple statements in Initialization or Operation separated by commas
+For Loop Example 2: There can be multiple statements in Initialization or Operation separated by commas
 ```
 for (int i = 0,j = 0; i < 10; i++,j--) {
     System.out.print(j);
 }
-```
-#### Code Output
-```
-0123456789
+//Output - 0123456789
 ```
 #### Enhanced For Loop
 Enhanced for loop can be used to loop around array's or List's.
@@ -1649,39 +1618,31 @@ int[] numbers = {1,2,3,4,5};
 for(int number:numbers){
     System.out.print(number);
 }
+//Output - 12345
 ```
-#### Example Output
-```
-12345
-```
-#### For Loop Example 3: Infinite Loop
 Any of 3 parts in a for loop can be empty.
 ```
 for (;;) {
     System.out.print("I will be looping for ever..");
 }
+//Infinite loop => Loop executes until the program is terminated.
 ```
-#### Result: 
-Infinite loop => Loop executes until the program is terminated.
-### Break Statement
-- Break statement breaks out of a loop
 
-#### Break Statement Example 1
+### Break Statement
+
+Break statement breaks out of a loop
+
+Example 1
 ```
 for (int i = 0; i < 10; i++) {
     System.out.print(i);
     if (i == 5) {
-break;
+         break;
     }
 }
+//Output - 012345
+//Even though the for loop runs from 0 to 10, execution stops at i==5 because of the break statement. ÒBreak statementÓ stops the execution of the loop and takes execution to the first statement after the loop.
 ```
-#### Program Output
-```
-012345
-```
-
-Even though the for loop runs from 0 to 10, execution stops at i==5 because of the break statement. ÒBreak statementÓ stops the execution of the loop and takes execution to the first statement after the loop.
-#### Break Statement Example 2: While loop
 
 Break can be used in a while also.
 ```
@@ -1693,14 +1654,11 @@ break;
     }
     i++;
 }
+//Output - 012345
 ```
-#### Code Output
-```
-012345
-```
-#### Break Statement Example 3: Inner Loops 
+
 Break statement takes execution out of inner most loop.
-```
+```java
 for (int j = 0; j < 2; j++) {
     for (int k = 0; k < 10; k++) {
 System.out.print(j + "" + k);
@@ -1709,102 +1667,89 @@ if (k == 5) {
 }
     }
 }
-```
-#### Program Output
-```
-000102030405101112131415
-```
+//Output - 000102030405101112131415
+//Each time the value of k is 5 the break statement is executed. 
+//The break statement takes execution out of the k loop and proceeds to the next value of j.
 
-Each time the value of k is 5 the break statement is executed. The break statement takes execution out of the k loop and proceeds to the next value of j.
-#### Break Statement Example 4: Labels 
-
-To get out of an outer for loop, labels need to be used.
+```
+Labels can be used to label and refer to specific for loop in a nested for loop.
 ```
 outer:
     for (int j = 0; j < 2; j++) {
-for (int k = 0; k < 10; k++) {
-    System.out.print(j + "" + k);
-    if (k == 5) {
-break outer;//Takes out of loop using j
+       for (int k = 0; k < 10; k++) {
+             System.out.print(j + "" + k);
+             if (k == 5) {
+               break outer;//Takes out of loop using j
+             }
+        }
     }
-}
-    }
-```
-#### Program Output
-```
-000102030405
+//Output - 000102030405
 ```
 ### Continue Statement
 - Continue statement skips rest of the statements in the loop and starts next iteration
 
-#### Continue Example 1: For loop
 ```
-Let's look at an example:
 for (int i = 0; i < 10; i++) {
     if (i == 5) {
-continue;
+      continue;
     }
     System.out.print(i);
 }
-//Output => 012346789
-```
 
-Note that the output does not contain 5. When i==5 continue is executed. Continue skips rest of the code and goes to next loop iteration. So, the print statement is not executed when i==5.
-#### Continue Example 2: While loop
+//Output => 012346789
+
+//Note that the output does not contain 5. 
+//When i==5 continue is executed. Continue skips rest of the code and goes to next loop iteration. 
+//So, the print statement is not executed when i==5.
+
+```
 Continue can be used in a while also
 ```
 int i = 0;
 while (i < 10) {
     i++;
     if (i == 5) {
-continue;
+        continue;
     }
     System.out.print(i);
 }
+//Output - 1234678910
 ```
-#### Program Output
-```
-1234678910
-```
-#### Continue Example 3: inner loop
+
 Continue statement takes execution to next iteration of inner most loop.
 ```
 for (int j = 0; j < 2; j++) {
     for (int k = 0; k < 10; k++) {
-if (k == 5) {
-    continue;//skips to next iteration of k loop
-}
-System.out.print(j + "" + k);
+       if (k == 5) {
+          continue;//skips to next iteration of k loop
+        }
+        System.out.print(j + "" + k);
     }
 }
-```
-#### Code Output
-```
-000102030406070809101112131416171819
-```
+//Output - 000102030406070809101112131416171819
+//When k==5 the print statement in the loop is skipped due to continue. 
+//So 05 and 05 are not printed to the console.
 
-When k==5 the print statement in the loop is skipped due to continue. So 05 and 05 are not printed to the console.
-#### Continue Example 4: Labels
-Consider the example below
+```
+Label Example
 ```
 outer:
     for (int j = 0; j < 2; j++) {
-for (int k = 0; k < 10; k++) {
-    if (k == 5) {
-continue outer;//skips to next iteration of j loop
+		for (int k = 0; k < 10; k++) {
+    		if (k == 5) {
+				continue outer;//skips to next iteration of j loop
+    		}
+    		System.out.print(j + "" + k);
+		}
     }
-    System.out.print(j + "" + k);
-}
-    }
-```
-#### Example Output
-```
-00010203041011121314
+//Output - 00010203041011121314
+//When k==5 is true, continue outer is called. 
+//So, when value of k is 5, the loop skips to the next iteration of j. 
+
 ```
 
-This examples uses a continue statement with label. When k==5 is true, continue outer is called. So, when value of k is 5, the loop skips to the next iteration of j. 
 ### Enum
-- Enum allows specifying a list of values for a Type. 
+- Enum allows specifying a list of valid values (or allowed values) for a Type. 
 
 #### Enum Declaration
 Consider the example below. It declares an enum Season with 4 possible values.
@@ -1813,10 +1758,8 @@ Consider the example below. It declares an enum Season with 4 possible values.
        WINTER, SPRING, SUMMER, FALL
     };
 ```
-#### Enum Example1
 
-Consider the example below:
-
+#### Enum Example 1
 ```
 
 //Enum can be declared outside a class
@@ -1863,8 +1806,8 @@ public class Enum {
 	}
 }
 ```
-#### Enum Rules
-Enums can be declared in a separate class(SeasonOutsideClass) or as member of a class(Season). Enums cannot be declared in a method.
+Enum Rules
+- Enums can be declared in a separate class(SeasonOutsideClass) or as member of a class(Season). Enums cannot be declared in a method.
 
 Conversion of Enum : Function valueOf(String)  is used to convert a string to enum.
 ```
@@ -1877,7 +1820,7 @@ Function name() is used to find String value of an enum.
 //Converting Enum to String
 System.out.println(season.name());//FALL
 ```
-#### Enum Ordinal
+
 Java assigns default ordinals to an enum in order. However, it is not recommended to use ordinals to perform logic.
 ```
 //Default ordinals of enum
@@ -1887,8 +1830,8 @@ System.out.println(Season.SPRING.ordinal());//1
 System.out.println(Season.SUMMER.ordinal());//2
 System.out.println(Season.FALL.ordinal());//3
 ```
-#### Looping around an Enum
-List of values allowed for an Enum can be obtained by invoking the  function values().
+
+Looping around an Enum - List of values allowed for an Enum can be obtained by invoking the  function values().
 ```
 //Looping an enum => We use method values
 for (Season season1: Season.values()) {
@@ -1897,8 +1840,7 @@ for (Season season1: Season.values()) {
 }
 ```
 
-#### Comparing two Enums.
-Values of Enum's can be compared using == or the equals function. 
+Comparing two Enums 
 ```
 //Comparing two Enums
 Season season1 = Season.FALL;
@@ -2009,7 +1951,7 @@ Enum constructors can only be (default) or (private) access. Enum constructors c
 SeasonCustomized season2 = new SeasonCustomized(1);
 */
 ```
-#### Switch Statement in Enum
+
 Example below shows how we can use a switch around an enum.
 ```
 // Using switch statement on an enum
@@ -2027,9 +1969,8 @@ public int getExpectedMaxTemperature() {
 }
 
 ```
-#### Enum Example 3 
 
-Consider the example below: 
+#### Enum Example 3 
 ```
 package com.in28minutes.java.beginners.concept.examples.enums;
 
@@ -2080,9 +2021,7 @@ public class EnumAdvanced2 {
 
 }
 ```
-
-#### Enum Constant Class. 
-In the example above, take a look at how the Winter Type is declared: It provides an overriding implementation for the getExpectedMaxTemperature method already declared in the Enum. This feature in an Enum is called a Constant Class.
+Enum Constant Class - In the example above, take a look at how the Winter Type is declared: It provides an overriding implementation for the getExpectedMaxTemperature method already declared in the Enum. This feature in an Enum is called a Constant Class.
 ```
 WINTER(1) {
     public int getExpectedMaxTemperature() {
@@ -2096,7 +2035,8 @@ WINTER(1) {
 Inheritance allows extending a functionality of a class and also promotes reuse of existing code. 
 
 #### Every Class extends Object class
-Every class in java is a sub class of the class Object. When we create a class we inherit all the methods and properties of Object class.
+- Every class in Java is a sub class of the class Object. 
+- When we create a class in Java, we inherit all the methods and properties of Object class.
 
 ```
 String str = "Testing";
@@ -2109,12 +2049,7 @@ if(str instanceof Object){
 }
 ```
 
-In the above example, toString, hashCode and clone methods for String class are inherited from Object class and overridden.
-
-#### Inheritance Example 1
-
-Consider the example class Actor below:
-
+Create a class Actor
 ```
 public class Actor {
     public void act(){
@@ -2134,10 +2069,8 @@ public class Hero extends Actor {
     };
 }
 ```
-Let's create an instance of Hero class. 
-- Since Hero extends Animal, the methods defined in Animal are also available through an instance of Hero class. 
-- In the example below, we invoke the act method on hero object. 
 
+Since Hero extends Animal, the methods defined in Animal are also available through an instance of Hero class. 
 ```
 Hero hero = new Hero();
 //act method inherited from Actor
@@ -2171,7 +2104,7 @@ Actor actor1 = new Comedian();
 Actor actor2 = new Hero();
 ```
 
-- Since object is super class of all classes, an Object reference variable can also hold an instance of any class.
+Object is super class of all classes. So, an Object reference variable can  hold an instance of any class.
 
 ```
 //Object is super class of all java classes
@@ -2180,16 +2113,17 @@ Object object = new Hero();
 
 #### Inheritance: IS-A Relationship
 
-- We should use inheritance only when there is an IS-A relationship between classes. For example, Comedian IS-A Actor, Hero IS-A Actor are both true. So, inheritance is correct relationship between classes.
+We should use inheritance only when there is an IS-A relationship between classes. For example, Comedian IS-A Actor, Hero IS-A Actor are both true. So, inheritance is correct relationship between classes.
 - Comedian is called a Sub Class. Actor is Super Class.
-- Multiple Inheritance results in a number of complexities. Java does not support Multiple Inheritance.
+
+Multiple Inheritance results in a number of complexities. Java does not support Multiple Inheritance.
 
 ```
 class Dog extends Animal, Pet { //COMPILER ERROR
 }
 ```
 
-However, we can create an Inheritance Chain
+We can create an inheritance chain.
 ```
 class Pet extends Animal {
 }
@@ -2200,21 +2134,16 @@ class Dog extends Pet {
 
 #### Inheritance and Polymorphism
 
-Polymorphism is defined as "Same Code" giving "Different Behavior".  
+Polymorphism is defined as "Same Code" having "Different Behavior".  
 
-#### Polymorphism Example
-Let's define an ```Animal``` class with a method ```shout```.
-
+Example
 ```
 public class Animal {
     public String shout() {
         return "Don't Know!";
     }
 }
-```
 
-Let's create two new sub classes of Animal overriding the Animal shout method.
-```
 class Cat extends Animal {
     public String shout() {
         return "Meow Meow";
@@ -2230,36 +2159,30 @@ class Dog extends Animal {
 
     }
 }
+
 ```
 
-Look at the code below. An instance of Animal class is created. shout method is called. 
-
+Execution
 ```
 Animal animal1 = new Animal();
 System.out.println(animal1.shout()); //Don't Know!
-```
 
-Look at the code below. An instance of Dog class is created and stored in a reference variable of type Animal.
-
-```
-Animal animal2 = new Dog();
+Animal animal2 = new Dog();//Animal reference used to store Dog object
 
 //Reference variable type => Animal
 //Object referred to => Dog
 //Dog's bark method is called.
 System.out.println(animal2.shout()); //BOW BOW
-```
 
-When shout method is called on animal2, it invokes the shout method in Dog class (type of the object pointed to by reference variable animal2).
-Even though dog has a method run, it cannot be invoked using super class reference variable.
-
-```
+//Cannot invoke sub class method with super class reference variable.
 //animal2.run();//COMPILE ERROR
+
 ```
 
-### instanceof Operator
+### Puzzle and Tips - instanceof Operator in depth
 
-Consider the following class and interface declarations:
+instanceof operator checks if an object is of a particular type.
+
 ```
 class SuperClass {
 };
@@ -2278,50 +2201,40 @@ class SubClass2 extends SuperClassImplementingInteface {
 
 class SomeOtherClass {
 };
-```
 
-instanceof operator checks if an object is of a particular type.
-
-```
 SubClass subClass = new SubClass();
 Object subClassObj = new SubClass();
 
 SubClass2 subClass2 = new SubClass2();
 SomeOtherClass someOtherClass = new SomeOtherClass();
-```
 
-We can run instanceof operator on the different instances created earlier.
-```
+//We can run instanceof operator on the different instances created earlier.
 System.out.println(subClass instanceof SubClass);//true
 System.out.println(subClass instanceof SuperClass);//true
 System.out.println(subClassObj instanceof SuperClass);//true
 
 System.out.println(subClass2 instanceof SuperClassImplementingInteface);//true
-```
 
-instanceof can be used with interfaces as well. Since Super Class implements the interface, below code prints true.
-```
+//instanceof can be used with interfaces as well. 
+//Since Super Class implements the interface, below code prints true.
 System.out.println(subClass2 
 instanceof Interface);//true
-```
 
-If the type compared is unrelated to the object, a compilation error occurs.
-```
+//If the type compared is unrelated to the object, a compilation error occurs.
 //System.out.println(subClass 
 //    instanceof SomeOtherClass);//Compiler Error
-```
 
-Object referred by subClassObj(SubClass)- NOT of type SomeOtherClass
-```
+//Object referred by subClassObj(SubClass)- NOT of type SomeOtherClass
 System.out.println(subClassObj instanceof SomeOtherClass);//false
 ```
+
 ### Class, Object, State and Behavior
 - In this tutorial, lets look at a few important object oriented concepts.
 
 #### Class, Object, State and Behavior Example
-Let's look at an example:
+
 ```
-package com.rithus;
+package com.in28minutes;
 
 public class CricketScorer {
     //Instance Variables - constitute the state of an object
@@ -2352,12 +2265,28 @@ System.out.println(scorer.getScore());
     }
 }
 ```
+
 #### Class
-A class is a Template. In above example, Class CricketScorer is the template for creating multiple objects. A class defines state and behavior that an object can exhibit.
+A class is a Template. 
+- In above example, class CricketScorer is the template for creating multiple objects. 
+
+A class defines state and behavior that an object can exhibit.
+
 #### Object
-An instance of a class. In the above example, we create an object using new CricketScorer(). The reference of the created object is stored in scorer variable. We can create multiple objects of the same class.
+An instance of a class. 
+- In the above example, we create an object using new CricketScorer(). 
+- The reference of the created object is stored in scorer variable. 
+- We can create multiple objects of the same class.
+
 #### State
-Values assigned to instance variables of an object. Consider following code snippets from the above example. The value in score variable is initially 0. It changes to 6 and then 10. State of an object might change with time. 
+State represents the values assigned to instance variables of an object at a specific time.  
+
+Consider following code snippets from the above example. 
+- The value in score variable is initially 0. 
+- It changes to 6 and then 10. 
+
+State of an object might change with time. 
+
 ```
 scorer.six();
 //State of scorer is (score => 6)
@@ -2365,88 +2294,88 @@ scorer.six();
 scorer.four();
 //State of scorer is (score => 10)
 ```
-#### Behavior
-Methods supported by an object. Above example the behavior supported is six(), four() and getScore().
-### toString method
-- toString method in Java is used to print the content of an object.
 
-#### toString method Example
-Consider the class given below:
+#### Behavior
+
+Behaviour of an object represents the different methods that are supported by it. 
+- Above example the behavior supported is six(), four() and getScore().
+
+### toString method
+toString() method in Java is used to print the content of an object.
+
+Example
 ```
 class Animal {
 
     public Animal(String name, String type) {
-this.name = name;
-this.type = type;
+      this.name = name;
+      this.type = type;
     }
 
     String name;
     String type;
 
 }
-```
-Run this piece of code:
-```
-Animal animal = new Animal("Tommy", "Dog");
-System.out.println(animal);//com.in28minutes.Animal@f7e6a96
-```
 
-Output does not show the content of animal (what name? and what type?). To show the content of the animal object, we can override the default implementation of toString method provided by Object class.
-#### Adding toString to Animal class
-```
+
+
+Animal animal = new Animal("Tommy", "Dog");
+
+//Output does not show the content of animal (what name? and what type?).
+System.out.println(animal);//com.in28minutes.Animal@f7e6a96
+
+To show the content of the animal object, we can override the default implementation of toString method provided by Object class.
+
+//Adding toString to Animal class
 class Animal {
     
     public Animal(String name, String type) {
-this.name = name;
-this.type = type;
+        this.name = name;
+        this.type = type;
     }
 
     String name;
     String type;
 
     public String toString() {
-return "Animal [name=" + name + ", type=" + type
-+ "]";
+        return "Animal [name=" + name + ", type=" + type + "]";
     }
 
 }
-```
 
-Run this piece of code:
-```
 Animal animal = new Animal("Tommy","Dog");
+
+//Output now shows the content of the animal object. 
 System.out.println(animal);//Animal [name=Tommy, type=Dog]
 ```
 
-Output now shows the content of the animal object. 
 ### equals method
-- Default implementation of equals method is defined in Object class. The implementation is similar to == operator. Two object references are equal only if they are pointing to the same object.We need to override equals method, if we would want to compare the contents of an object.
 
-#### equals method example
-Consider the example Client class provided below.
+equals method is used to compare if two objects are having the same content.
+- Default implementation of equals method is defined in Object class. The implementation is similar to == operator. 
+- By default, two object references are equal only if they are pointing to the same object.
+- However, we can override equals method and provide a custom implementation to compare the contents for an object.
 
+Example
 ```
 class Client {
     private int id;
 
     public Client(int id) {
-this.id = id;
+      this.id = id;
     }
 
     @Override
     public int hashCode() {
-final int prime = 31;
-int result = 1;
-result = prime * result + id;
-return result;
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + id;
+      return result;
     }
-
 }
-```
 
-== comparison operator checks if the object references are pointing to the same object. It does NOT look at the content of the object.
-
-```
+// == comparison operator checks if the object references are pointing to the same object. 
+// It does NOT look at the content of the object.
 Client client1 = new Client(25);
 Client client2 = new Client(25);
 Client client3 = client1;
@@ -2456,42 +2385,35 @@ System.out.println(client1 == client2);//false
 
 //client3 and client1 refer to the same client objects.
 System.out.println(client1 == client3);//true
-```
 
-Equals method can be used to compare the content of two objects.
-
-Every Class inherits from Object class, where the default implementation of equals method is provided. However, the default implementation of equals, provided by Object class is similar to == Comparison operator. It checks only if the references are pointing to same object. 
-
-```
 //similar output to ==
 System.out.println(client1.equals(client2));//false
 System.out.println(client1.equals(client3));//true
-```
 
-We can override the equals method in the Client class to check the content of the objects. Consider the example below:
-```
+//overriding equals method
 class Client {
     private int id;
 
     public Client(int id) {
-this.id = id;
+      this.id = id;
     }
 
     @Override
     public boolean equals(Object obj) {
-Client other = (Client) obj;
-if (id != other.id)
-    return false;
-return true;
+      Client other = (Client) obj;
+      if (id != other.id)
+          return false;
+      return true;
     }
 }
 ```
 
-Signature of the equals method is "public boolean equals(Object obj) ". Note that "public boolean equals(Client client)" will not override the equals method defined in Object. Parameter should be of type Object.
+Signature of the equals method is "public boolean equals(Object obj) ". 
+- Note that "public boolean equals(Client client)" will not override the equals method defined in Object. Parameter should be of type Object.
+- The implementation of equals method checks if the id's of both objects are equal. If so, it returns true. 
+- Note that this is a basic implementation of equals.
 
-The implementation of equals method checks if the id's of both objects are equal. If so, it returns true. Note that this is a basic implementation of equals and at the end of this tutorial, we would add more code to make it fool-proof.
-
-Consider running the code below: 
+Example
 ```
 Client client1 = new Client(25);
 Client client2 = new Client(25);
@@ -2503,9 +2425,6 @@ System.out.println(client1.equals(client2));//true
 //both id's are 25
 System.out.println(client1.equals(client3));//true
 ```
-
-Above code compares the values (id's) of the objects.
-#### equals method properties 
 Any equals implementation should satisfy these properties:
 - Reflexive. For any reference value x, x.equals(x) returns true.
 - Symmetric. For any reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
@@ -2514,6 +2433,7 @@ Any equals implementation should satisfy these properties:
 - For any non-null reference value x, x.equals(null) should return false.
 
 Let's now provide an implementation of equals which satisfy these properties:
+
 ```
 //Client class
 @Override
@@ -2530,15 +2450,19 @@ return false;
     return true;
 }
 ```
-### hashCode method
-- HashCode's are used in hashing to decide which group (or bucket) an object should be placed into. A group of object's might share the same hashcode. The implementation of hash code decides effectiveness of Hashing. A good hashing function evenly distributes object's into different groups (or buckets).
 
-#### hashCode method properties 
+### hashCode method
+- HashCode's are used in hashing to decide which group (or bucket) an object should be placed into. 
+   - A group of object's might share the same hashcode. 
+   - The implementation of hash code decides effectiveness of Hashing. 
+   - A good hashing function evenly distributes object's into different groups (or buckets).
+
+hashCode method properties 
 - If obj1.equals(obj2) is true, then obj1.hashCode() should be equal to obj2.hashCode()
 - obj.hashCode() should return the same value when run multiple times, if values of obj used in equals() have not changed.
 - If obj1.equals(obj2) is false, it is NOT required that obj1.hashCode() is not equal to obj2.hashCode(). Two unequal objects MIGHT have the same hashCode.
-#### hashCode method example
-A sample hashcode implementation of Client class which meets above constraints is given below:
+
+Example
 ```
 //Client class
 @Override
@@ -2549,23 +2473,21 @@ public int hashCode() {
     return result;
 }
 ```
-### Abstract Class
-- An abstract class cannot be instantiated. Let's understand about an Abstact class with examples.
 
-#### Abstract Class cannot be instantiated
-In code below ÓAbstractClassExample ex = new AbstractClassExample();Ó gives a compilation error because AbstractClassExample is declared with keyword abstract. 
+### Abstract Class
+An abstract class cannot be instantiated.
+
 ```
 public abstract class AbstractClassExample {
     public static void main(String[] args) {
-//An abstract class cannot be instantiated
-//Below line gives compilation error if uncommented
-//AbstractClassExample ex = new AbstractClassExample();
+      //An abstract class cannot be instantiated
+      //Below line gives compilation error if uncommented
+      //AbstractClassExample ex = new AbstractClassExample();
     }
 }
-```
-#### Abstract class can contain instance and static variables
-Consider the example below. Abstract class contains instance variables and static variables.
-```
+
+//Abstract class can contain instance and static variables
+
 public abstract class AbstractClassExample {
     
     //Abstract class can contain instance and static variables
@@ -2574,25 +2496,19 @@ public abstract class AbstractClassExample {
     static int staticVariable;
 
 }
-```
-#### Abstract Methods
-An Abstract method does not contain body.
-```
-    //Abstract Class can contain 0 or more abstract methods
-    //Abstract method does not have a body
-    abstract void abstractMethod1();
-    abstract void abstractMethod2();
-```
-#### Abstract method - Only in Abstract Class.
-Abstract method can be declared only in Abstract Class. In the example below, abstractMethod() gives a compiler error because NormalClass is not abstract.
-```
+
+//An Abstract method does not contain body.
+//Abstract Class can contain 0 or more abstract methods
+//Abstract method does not have a body
+abstract void abstractMethod1();
+abstract void abstractMethod2();
+
+//Abstract method can be declared only in Abstract Class. 
 class NormalClass{
     abstract void abstractMethod();//COMPILER ERROR
 }
-```
-#### Abstract Class & non abstract methods.
-Abstract class can contain fully defined non-abstract methods. Complete Example below:
-```
+
+// Abstract class can contain fully defined non-abstract methods. 
 public abstract class AbstractClassExample {
     
     //Abstract class can contain instance and static variables
@@ -2607,52 +2523,48 @@ public abstract class AbstractClassExample {
     
     //Abstract Class can contain 0 or more non-abstract methods
     public void nonAbstractMethod(){
-System.out.println("Non Abstract Method");
+      System.out.println("Non Abstract Method");
     }    
     
     public static void main(String[] args) {
-//An abstract class cannot be instantiated
-//Below line gives compilation error if uncommented
-//AbstractClassExample ex = new AbstractClassExample();
+      //An abstract class cannot be instantiated
+      //Below line gives compilation error if uncommented
+      //AbstractClassExample ex = new AbstractClassExample();
     }
 }
-```
-#### Extending an abstract class
-This class implements both abstractMethod1 and abstractMethod2.
-```
+
+//Extending an abstract class
 class SubClass2 extends AbstractClassExample {
     void abstractMethod1() {
-System.out.println("Abstract Method1");
+      System.out.println("Abstract Method1");
     }
 
     void abstractMethod2() {
-System.out.println("Abstract Method2");
+      System.out.println("Abstract Method2");
     }
 }
-```
-#### A concrete sub class should implement all abstract methods.
-A concrete sub class of an abstract class should implement all the abstract methods. Look at the example below. SubClass extends AbstractClassExample but does not define the abstract methods declared in AbstractClassExample. 
-```
-//Below class gives compilation error if uncommented
+
+// A concrete sub class should implement all abstract methods.
+// Below class gives compilation error if uncommented
 /*
 class SubClass extends AbstractClassExample {
     
 }
 */
-```
-#### An abstract sub class need not implement all abstract methods.
-We can create a subclass of an abstract class which is abstract. It doesn't need to implement all the abstract methods. 
-```
+
+//An abstract sub class need not implement all abstract methods.
 abstract class AbstractSubClass extends AbstractClassExample {
     void abstractMethod1() {
-System.out.println("Abstract Method1");
+      System.out.println("Abstract Method1");
     }
     //abstractMethod2 is not defined.
 }
 ```
-#### Abstract Class , Other Points
-Abstract Methods cannot be paired with final or private access modifiers.
-A variable cannot be abstract.
+
+Tips
+- Abstract Methods cannot be paired with final or private access modifiers.
+- A variable cannot be abstract.
+
 ### Constructors
 - Constructor is invoked whenever we create an instance(object) of a Class. We cannot create an object without a constructor. If we do not provide a constructor, compiler provides a default no-argument constructor.
 
@@ -2803,10 +2715,7 @@ public class ConstructorExamples {
 Labrador labrador = new Labrador();
     }
 }
-```
-#### Program Output
-```
-Animal Constructor
+//Output - Animal Constructor
 Dog Constructor
 Labrador Constructor
 ```
@@ -4222,10 +4131,7 @@ method2();
 String str = null;
 str.toString();
     }
-```
-#### Program Output
-```
-Exception in thread "main" java.lang.NullPointerException at
+//Output - Exception in thread "main" java.lang.NullPointerException at
 com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:15)
 at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:10)
 at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:6)
@@ -4250,10 +4156,7 @@ String str = null;
 str.toString();
 System.out.println("Line after Exception - Method 2");
     }
-```
-#### Code Output
-```
-Exception in thread "main" java.lang.NullPointerException
+//Output - Exception in thread "main" java.lang.NullPointerException
 at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:18)
 at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:12)
 at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:7)
@@ -4287,7 +4190,7 @@ try {
     }
 ```
 
-#### Program Output
+Output
 ```
 Exception Handled - Method 2
 Line after Exception - Method 1
@@ -6624,7 +6527,7 @@ battingThread2.start();
 
 }
 ```
-#### Program Output:
+Output:
 ```
 Running Batting Statistics Thread 0
 Running Batting Statistics Thread 1
@@ -6693,10 +6596,7 @@ public static void main(String[] args) {
 System.out.print(spreadSheet.setandGetSum(i, i * 2, i * 3) + " ");
     }
 }
-```
-#### Program Output
-```
-0 6 12 18
+//Output - 0 6 12 18
 ```
 Output would contain a multiple of 6 always because we are calling with i, i*2 and i*3 and summing up. So, the result should generally be i*6 with i running from 0 to 3.
 #### Example Program using Threads 
@@ -6725,13 +6625,13 @@ two.start();
 ```
 
 We are creating 2 instances of the Thread using the interface , one and two. And start method is invoked to run the thread. Both threads share the instance of SpreadSheet class , spreadsheet.
-#### Program Output
+Output
 ```
 FIRST RUN    : 0 1 6 9 12 15 18 18
 SECOND RUN    : 0 3 6 6 12 15 18 18
 THIRD RUN    : 0 3 6 9 12 15 18 18
 ```
-#### Program Output Discussion
+Output Discussion
 What we see is that different runs have different results. That's expected with threads. What is not expected is to see numbers like 1, 9, 15 and 3 in the output. We are expecting to see multiples of 6 in the output(as in the earlier serial run) but we see numbers which are not multiples of 6. Why is this happening?
 This is a result of having two threads run in parallel without synchronization. Consider the code in the setAndGetSum method.
 ```
@@ -6813,10 +6713,7 @@ LINE 2: battingThread1.start();
 LINE 3: BowlingStatisticsThread battingInterfaceImpl = new BowlingStatisticsThread();
 LINE 4: Thread battingThread2 = new Thread(battingInterfaceImpl);
 LINE 5:battingThread2.start();
-```
-#### Program Output
-```
-Running Batting Statistics Thread 0
+//Output - Running Batting Statistics Thread 0
 Running Batting Statistics Thread 1
 ..
 ..
@@ -7571,3 +7468,36 @@ Where are objects created? Where are strings created?
 ### TODO
 - replace ``` with ```java at start of code
 - //Getters and Setters are eliminated to keep the example short
+- Java SE vs ME vs EE 
+- Check for long lines which are cut off in pdf
+- Notes from Venkat's Talk
+  - Designed for a different world - PEnguins
+  - OOPS - Terrible - 1970s
+  - FP - Lambda calculus-1929
+  - Complexity from problems vs Complexity from solutions
+  - Structured Programming - One Start One Exit????
+  - Functional Programming
+    - Assignment LEss 
+    - Statements vs Expressions
+    - Pure Function - No side effects and Zero dependencies that change
+    - Referential Transparency
+    - Pure Functions
+      - idempotent
+      - referenctial transparency
+      - memorizable
+      - easier to testt
+      - may be lazily evaluated
+    - Higher order function
+      - take/create/return object vs take/create/return function
+    - Java Future - imperative + oops -> functional + oops
+    - Stream - Does not evaluate the function on all the data. It takes a collection of functions (fusing - intermediate operations combined) and executes them on each piece of data..
+      - Functional Pipeline, Function
+      - "Coolection pipeline pattern" -> Martin Fowler
+    - Lambda - Stateless
+    - Closure has State
+  - Code is Liability not an asset!
+  - Exception Handling - Promise
+  - Reactive Programming
+    - Error, Data and End channels
+    - Error is a first class citizen
+    - Handle errors down stream
