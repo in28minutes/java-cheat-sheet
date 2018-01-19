@@ -43,7 +43,7 @@ G --> N[Linux Instructions]
 - JRE
   - JVM + Libraries + Other Components (to run applets and other java applications)
 - JDK
-  - JRE + Compilers + Debuggers
+  - JRE + Compilers + Debuggers
 
 ### ClassLoader
 
