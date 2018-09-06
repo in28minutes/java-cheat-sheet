@@ -1,6 +1,9 @@
 # Java Cheat Sheet
 Review Java 9 Concepts at Jet Speed.
 
+### Complete Java Course
+- https://www.udemy.com/java-programming-tutorial-for-beginners/
+
 ## Introduction
 
 ## Background
@@ -132,7 +135,6 @@ TYPE variableName;
 - Two or more variables of single type can be declared together.
 - All six numeric types in Java are signed.
 
-
 ### Primitive Variables
 
 Variables that store value.
@@ -171,9 +173,7 @@ char ch = 'a';
 char ch2 = ';';
 ```
 
-
 ### Reference Variables
-
 
 ```
 Animal dog = new Animal();
@@ -182,7 +182,6 @@ Animal dog = new Animal();
 The instance of new Animal - Animal object - is created in memory. The memory address of the object created is stored in the dog reference variable.
 
 Reference Variables contains a reference or a guide to get to the actual object in memory.
-
 
 #### Puzzles
 
@@ -620,13 +619,27 @@ class Player{
 - If null is assigned to a reference variable, reference variable is considered to be assigned.
 
 ### Wrapper Classes
+- [Example 1](src/main/java/com/in28minutes/java/wrapper/WrapperExamples.java)
+- A wrapper class wraps (encloses) around a data type and gives it an object appearance
+- Wrapper: Boolean,Byte,Character,Double,Float,Integer,Long,Short 
+- Primitive: boolean,byte,char ,double, float, int , long,short
+- Examples of creating wrapper classes are listed below.
+  - Integer number = new Integer(55);//int;
+  - Integer number2 = new Integer("55");//String
+  - Float number3 = new Float(55.0);//double argument  
+  - Float number4 = new Float(55.0f);//float argument  
+  - Float number5 = new Float("55.0f");//String 
+  - Character c1 = new Character('C');//Only char constructor 
+  - Boolean b = new Boolean(true); 
+- Reasons
+  - null is a possible value
+  - use it in a Collection
+  - Object like creation from other types.. like String
+
 - A primitive wrapper class in the Java programming language is one of eight classes provided in the java.lang package to provide object methods for the eight primitive types. All of the primitive wrapper classes in Java are immutable.
 
-#### List of Wrapper Classes in Java
-- Wrapper:   Boolean,Byte,Character,Double,Float,Integer,Long,Short
-- Primitive: boolean,byte,char,double, float,   int    ,  long,short
-
 Wrapper classes are final and immutable.
+
 
 #### Creating Wrapper Classes
 
@@ -772,6 +785,25 @@ Note that the value of str3 is not modified in the above example.  The result sh
 String concat = str3.concat("value2");
 System.out.println(concat); //value1value2
 ```
+
+## Where are string literals stored in memory?
+All strings literals are stored in "String constant pool". If compiler finds a String literal,it checks if it exists in the pool. If it exists, it is reused.
+Following statement creates 1 string object (created on the pool) and 1 reference variable.
+```
+String str1 = "value"; 
+```
+However, if new operator is used to create string object, the new object is created on the heap. Following piece of code create 2 objects.
+```
+//1. String Literal "value" - created in the "String constant pool"
+//2. String Object - created on the heap
+String str2 = new String("value");
+```
+## String vs StringBuffer vs StringBuilder
+- Immutability : String
+- Thread Safety : String(immutable), StringBuffer
+- Performance : StringBuilder (especially when a number of modifications are made.)
+- [Example 1](src/main/java/com/in28minutes/java/string/StringBufferBuilderExamples.java)
+
 
 #### String Constant Pool
 
@@ -1051,13 +1083,6 @@ System.out.println(!true);//false
 ```
 ### Arrays
 - TODO : Why do we need arrays?
-- Arrays allow storing multiple values of same type.
-- Once An Array is created, its size cannot be increased or decreased. 
-- New Arrays are always initialized with default values.
-   - byte,short,int,long    0 
-   - float,double 0.0 
-   - boolean false
-   - object    null
 
 ```
 //Declaring an Array
@@ -1346,6 +1371,7 @@ else
 ```
 
 Puzzle 3
+
 ```
 int m = 15;
 
@@ -1368,6 +1394,7 @@ System.out.println("Who am I?");
 ```
 
 Puzzles Continued
+
 ```
 
 //Puzzle 4
@@ -1391,7 +1418,6 @@ if(isTrue=true){
 }
 
 //Condition is isTrue=true. This is assignment. Returns true. So, code in if is executed.
-
 ```
 
 ### Switch Statement
@@ -1522,9 +1548,8 @@ Default
 ```
 #### Switch statement Example 6
 
->TODO Check this up.. Its supports String. Does it support others as well?
 
-Switch can be used only with char, byte, short, int or enum
+Switch can be used only with char, byte, short, int, String or enum
 ```
 long l = 15;
 /*switch(l){//COMPILER ERROR. Not allowed.
@@ -1776,7 +1801,7 @@ public class Enum {
 	public static void main(String[] args) {
 		/*
 		 * //Uncommenting gives compilation error //enum cannot be created in a
-		 * method enum InsideMethodNotAllowed { WINTER, SPRING, SUMMER, FALL };
+		 * <main></main>ethod enum InsideMethodNotAllowed { WINTER, SPRING, SUMMER, FALL };
 		 */
 
 		// Converting String to Enum
@@ -2786,6 +2811,7 @@ class Dog extends Animal {// COMPILER ERROR! No constructor for Animal()
 Two ways to fix above errors. 
 1.Create a no arguments constructor in Animal class.
 2.Make a explicit super("Default Dog Name") call in the Dog() constructor.
+
 #### Creating a super class no argument constructor
 
 ```
@@ -3049,6 +3075,7 @@ public static void main(String[] args) {
 ```
 #### Encapsulation Example
 In terms of encapsulation Approach 3 > Approach 2 > Approach 1. In Approach 3, the user of scorer class does not even know that there is a variable called score. Implementation of Scorer can change without changing other classes using Scorer.
+
 ### Interface
 - An interface defines a contract for  responsibilities (methods) of a class. Let's look at a few examples of interfaces.
 
@@ -3061,7 +3088,7 @@ public abstract interface Flyable {
     public abstract void fly();
 }
 ```
-#### An interface can contain abstract methods
+#### An interface can contain abstract methods -- NOT TRUE ANY MORE
 In the above example, fly method is abstract since it is only declared (No definition is provided).
 #### Implementing an Interface
 We can define a class implementing the interface by using the implements keyword. Let us look at a couple of examples:
@@ -3113,19 +3140,13 @@ interface ExampleInterface1 {
 }
 ```
 #### Methods in an interface
-Interface methods are by default public and abstract. A concrete method (fully defined method) cannot be created in an interface. Consider the example below:
+Interface methods are by default public and abstract. A concrete default method (fully defined method) can be created in an interface. Consider the example below:
 ```
 interface ExampleInterface1 {
     //By default - public abstract. No other modifier allowed
     void method1();//method1 is public and abstract
     //private void method6();//COMPILER ERROR!
     
-    /*//Interface cannot have body (definition) of a method
-      //This method, uncommented, gives COMPILER ERROR!
-    void method5() {
-System.out.println("Method5");
-    }
-     */
 }
 ```
 #### Extending an Interface
@@ -3175,6 +3196,7 @@ System.out.println("Sample Implementation for Method1");
 A class should implement all the methods in an interface, unless it is declared abstract.
 A Class can implement multiple interfaces.
 No new checked exceptions can be thrown by implementations of methods in an interface.
+
 ### Method Overloading
 - A method having the same name as another method (in same class or a sub class) but having different parameters is called an Overloaded Method.
 
@@ -3205,6 +3227,17 @@ A method cannot be overloaded just by only changing the return type.
 Overloaded methods are always treated as if they are different methods altogether.
 Overloading does not put any restrictions on access modifiers or exceptions thrown from the method.
 Overloaded method invocation is based on the Type of the Reference variable. It is NOT based on the object it refers to.
+
+- Java Example
+  - Constructors
+  - public HashMap(int initialCapacity, float loadFactor)
+  - public HashMap() {
+  - public HashMap(int initialCapacity)
+  - Methods  
+  - public boolean addAll(Collection<? extends E> c)
+  - public boolean addAll(int index, Collection<? extends E> c)
+- [Rules](src/main/java/com/in28minutes/java/oops/inheritance/overloading/OverloadingRules.java)
+
 ### Method Overriding
 - Creating a Sub Class Method with same signature as that of a method in SuperClass is called Method Overriding.
 
@@ -3228,6 +3261,12 @@ return "Meow Meow";
 ```
 
 bark method in Cat class is overriding the bark method in Animal class.
+
+- Java Example
+  - HashMap public int size() overrides AbstractMap public int size()
+- [Example](src/main/java/com/in28minutes/java/oops/inheritance/overriding/OverridingRules.java)
+
+
 #### Overriding Method Cannot have lesser visibility
 Overriding method cannot have lesser visibility than the Super Class method. Consider these two examples
 #### Example 1
@@ -3284,6 +3323,7 @@ class SubClass{
 }
 ```
 publicMethod() in SuperClass throws FileNotFoundException. So, the SubClass publicMethod() can throw FileNotFoundException or any sub class of FileNotFoundException. It can also not throw an Exception (as in the example). But, it cannot throw any new Exception. For example, Òpublic void publicMethod() throws IOExceptionÓ would cause compilation error.
+
 #### Other Overriding Rules
 A Sub Class can override only those methods that are visible to it.
 Methods marked as static or final cannot be overridden.
@@ -4381,6 +4421,7 @@ Exception is used when a programmer can handle the exception.
 RuntimeException and classes that extend RuntimeException are called unchecked exceptions. For Example: RuntimeException,UnCheckedException,UnCheckedException2 are unchecked or RunTime Exceptions. There are subclasses of RuntimeException (which means they are subclasses of Exception also.)
 #### Checked Exception
 Other Exception Classes (which don't fit the earlier definition). These are also called Checked Exceptions. Exception, CheckedException1,CheckedException2 are checked exceptions. They are subclasses of Exception which are not subclasses of RuntimeException.
+
 #### Throwing RuntimeException in method
 
 Method addAmounts in Class AmountAdder adds amounts. If amounts are of different currencies it throws an exception.
@@ -4681,6 +4722,7 @@ System.out.printf("%s is %d Years old", "Rithu", 5);//Rithu is 5 Years old
 ```
 
 In the simplest form, string to be formatted starts with % followed by conversion indicator => b - boolean c - char d - integer f - floating point s - string.
+
 #### Other Format/Printf Examples
 ```
 //Prints 12 using minimum 5 character spaces.
@@ -7501,3 +7543,9 @@ Where are objects created? Where are strings created?
     - Error, Data and End channels
     - Error is a first class citizen
     - Handle errors down stream
+
+### Complete Java Course
+- https://www.udemy.com/java-programming-tutorial-for-beginners/
+
+### More Courses and Videos From in28Minutes
+- https://github.com/in28minutes/learn
