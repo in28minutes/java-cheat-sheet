@@ -1633,7 +1633,7 @@ For Loop Example 2: There can be multiple statements in Initialization or Operat
 for (int i = 0,j = 0; i < 10; i++,j--) {
     System.out.print(j);
 }
-//Output - 0123456789
+//Output - 0-1-2-3-4-5-6-7-8-9
 ```
 #### Enhanced For Loop
 Enhanced for loop can be used to loop around array's or List's.
