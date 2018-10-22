@@ -844,7 +844,7 @@ System.out.println("ABC".equalsIgnoreCase("abc"));//true
 
 //Get All characters from index paramInt
 //String substring(int paramInt)
-System.out.println("abcdefghij".substring(3)); //cdefghij
+System.out.println("abcdefghij".substring(3)); //defghij
 
 //All characters from index 3 to 6
 System.out.println("abcdefghij".substring(3,7)); //defg
