@@ -2,7 +2,12 @@
 Review Java 9 Concepts at Jet Speed.
 
 ### Complete Java Course
-- https://www.udemy.com/java-programming-tutorial-for-beginners/
+
+[![Image](https://www.in28minutes.com/course-promotional-images/Java-Programming-for-Complete-Beginners-in-250-Steps.png "Java 9 Programming for Complete Beginners in 250 Steps
+")](https://www.udemy.com/java-programming-tutorial-for-beginners/?couponCode=LEARN-2019)
+
+[![Image](https://www.in28minutes.com/course-promotional-images/Python-Programming-For-Java-Programmers-in-100-Easy-Steps.png "Python For Beginners - Java to Python in 100 Steps")](https://www.udemy.com/learn-python-programming-for-java-programmers?couponCode=LEARN-2019)
+
 
 ## Introduction
 
@@ -7545,7 +7550,11 @@ Where are objects created? Where are strings created?
     - Handle errors down stream
 
 ### Complete Java Course
-- https://www.udemy.com/java-programming-tutorial-for-beginners/
+
+[![Image](https://www.in28minutes.com/course-promotional-images/Java-Programming-for-Complete-Beginners-in-250-Steps.png "Java 9 Programming for Complete Beginners in 250 Steps
+")](https://www.udemy.com/java-programming-tutorial-for-beginners/?couponCode=LEARN-2019)
+
+[![Image](https://www.in28minutes.com/course-promotional-images/Python-Programming-For-Java-Programmers-in-100-Easy-Steps.png "Python For Beginners - Java to Python in 100 Steps")](https://www.udemy.com/learn-python-programming-for-java-programmers?couponCode=LEARN-2019)
 
 ### More Courses and Videos From in28Minutes
 - https://github.com/in28minutes/learn
