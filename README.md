@@ -2,7 +2,7 @@
 Review Java 9 Concepts at Jet Speed.
 
 ### Complete Java Course
-- https://www.udemy.com/software-architect-course-first-steps/?couponCode=YOUTUBE-2019
+- https://www.udemy.com/java-programming-tutorial-for-beginners/?couponCode=IN28MINUTES
 
 ## Introduction
 
