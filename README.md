@@ -1,8 +1,8 @@
-# Java Cheat Sheet
+# Java Tutorial For Beginners - A Cheat Sheet
 Review Java 9 Concepts at Jet Speed.
 
 ### Complete Java Course
-- https://www.udemy.com/java-programming-tutorial-for-beginners/
+- https://www.udemy.com/software-architect-course-first-steps/?couponCode=YOUTUBE-2019
 
 ## Introduction
 
