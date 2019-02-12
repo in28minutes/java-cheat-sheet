@@ -692,8 +692,8 @@ xxxValue methods help in creating primitives
 
 ```
 Integer integer = Integer.valueOf(57);
-int primitive = seven.intValue();//57
-float primitiveFloat = seven.floatValue();//57.0f
+int primitive = integer.intValue();//57
+float primitiveFloat = integer.floatValue();//57.0f
 
 Float floatWrapper = Float.valueOf(57.0f);
 int floatToInt = floatWrapper.intValue();//57
