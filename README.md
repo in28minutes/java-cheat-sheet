@@ -1224,7 +1224,7 @@ int marks4[] = { 25, 30, 50, 10, 5, };
 
 
 int marks[]; //Not Readable
-int[] runs; //Not Readable
+int[] runs; //Readable
 
 
 //int values[5];//Compilation Error!Declaration of an Array should not include size. 
@@ -1373,11 +1373,10 @@ else
 
 //Output is "l<20" followed by "Who am I?" on next line. 
 //else belong to the last if before it unless brackets ({}) are used.
-```
-
-Puzzle 3
 
 ```java
+//Puzzle 3
+
 int m = 15;
 
 if(m>20)
@@ -1400,8 +1399,7 @@ System.out.println("Who am I?");
 
 Puzzles Continued
 
-```
-
+```java
 //Puzzle 4
 
 int x1 = 0;
@@ -1555,12 +1553,15 @@ Default
 
 
 Switch can be used only with char, byte, short, int, String or enum
+
 ```java
 long l = 15;
 /*switch(l){//COMPILER ERROR. Not allowed.
 }*/
+```
 
 Case value should be a compile time constant.
+
 ```java
 number = 10;
 switch (number) {
@@ -2100,7 +2101,7 @@ public class Hero extends Actor {
 }
 ```
 
-Since Hero extends Animal, the methods defined in Animal are also available through an instance of Hero class. 
+Since Hero extends Actor, the methods defined in Actor are also available through an instance of Hero class. 
 ```
 Hero hero = new Hero();
 //act method inherited from Actor
@@ -2167,6 +2168,7 @@ class Dog extends Pet {
 Polymorphism is defined as "Same Code" having "Different Behavior".  
 
 Example
+
 ```java
 public class Animal {
     public String shout() {
@@ -2193,7 +2195,8 @@ class Dog extends Animal {
 ```
 
 Execution
-```
+
+```java
 Animal animal1 = new Animal();
 System.out.println(animal1.shout()); //Don't Know!
 
@@ -3014,7 +3017,7 @@ new DatabaseStorer().storeIntoDatabase();
 }
 ```
 ### Encapsulation
-- Encapsulation is Òhiding the implementation of a Class behind a well defined interfaceÓ. Encapsulation helps us to change implementation of a class without breaking other code.
+- Encapsulation is hiding the implementation of a Class behind a well defined interfaceÓ. Encapsulation helps us to change implementation of a class without breaking other code.
 
 #### Encapsulation Approach 1
 In this approach we create a public variable score. The main method directly accesses the score variable, updates it.
@@ -3315,6 +3318,7 @@ class SubClass{
 defaultMethod in SuperClass is declared with default access. Any method overriding it can have access default or greater. So default, protected and public are fine. Overriding method cannot be private.
 #### Overriding method cannot throw new Checked Exceptions
 Consider the example below:
+
 ```java
 class SuperClass{
     public void publicMethod() throws FileNotFoundException{
@@ -3328,7 +3332,8 @@ class SubClass{
 
     }
 }
-```java
+```
+
 publicMethod() in SuperClass throws FileNotFoundException. So, the SubClass publicMethod() can throw FileNotFoundException or any sub class of FileNotFoundException. It can also not throw an Exception (as in the example). But, it cannot throw any new Exception. For example, Òpublic void publicMethod() throws IOExceptionÓ would cause compilation error.
 
 #### Other Overriding Rules
@@ -6039,7 +6044,7 @@ File file = new File("FileName.txt");
 Check if the file exists.
 ```java
 System.out.println(file.exists());
-```java
+```
 if file does not exist creates it and returns true. If file exists, returns false.
 ```java
 System.out.println(file.createNewFile());
