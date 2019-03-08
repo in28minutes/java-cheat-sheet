@@ -6157,7 +6157,7 @@ System.out.println(Arrays.toString(temp));//output below
 ```
 
 ### BufferedWriter and BufferedReader
-- BufferedWriter and BufferedReader provide better buffering in addition to basic file writing and reading operations. For example, instead of reading the entire file, we can read a file line by line.  Let's  write an example to write and read from a file using FileReader and FileWriter.
+- BufferedWriter and BufferedReader provide better buffering in addition to basic file writing and reading operations. For example, instead of reading the entire file, we can read a file line by line.  Let's  write an example to write and read from a file using BufferedReader and BufferedWriter.
 
 #### BufferedWriter Class
 BufferedWriter class helps writing to a class with better buffering than FileWriter.
