@@ -398,6 +398,7 @@ a /= 5;//similar to a = a / 5;
 ```java
 System.out.println(10 % 4);//2
 System.out.println(15 % 4);//3
+System.out.println(-15 % 4);//-3
 ```
 
 #### Conditional Operator
