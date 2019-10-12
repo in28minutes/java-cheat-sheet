@@ -138,6 +138,7 @@ TYPE variableName;
 
 #### Tips
 - Two or more variables of single type can be declared together.
+- Variable can be local or global. The local variables can be referenced (ie, are valid) only within the scope of their method (or function).
 - All six numeric types in Java are signed.
 
 ### Primitive Variables
@@ -415,6 +416,20 @@ age = 15;
 
 System.out.println(
 age >= 18 ? "Can Vote": "Cannot Vote");//Cannot Vote
+```
+#### Bitwise Operators
+- You can work at bit level with these operators.
+- & is bitwise AND, | is bitwise OR, ~ is bitwise complement (negation), ^ is bitwise XOR, << is left shift bitwise operator and >> is right shift bitwise operator.
+
+```java
+System.out.println(25|12);//output will be 29
+/*convert to binary and calculate: 
+00001100 (12 in decimal)
+00011001 (25 in decimal)
+________
+00011101 (29 in decimal) */
+System.out.println(25&12);//output will be 8
+System.out.println(25^12);//output will be 21
 ```
 
 ### Passing Variables to Methods
