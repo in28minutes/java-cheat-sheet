@@ -7611,10 +7611,11 @@ Where are objects created? Where are strings created?
 
 ### Complete Java Course
 
-[![Image](https://www.in28minutes.com/course-promotional-images/Java-Programming-for-Complete-Beginners-in-250-Steps.png "Java 9 Programming for Complete Beginners in 250 Steps
+[![Image](https://www.springboottutorial.com/images/Course-Java-Programming-for-Complete-Beginners-in-250-Steps.png "Java 9 Programming for Complete Beginners in 250 Steps
 ")](https://www.udemy.com/java-programming-tutorial-for-beginners/?couponCode=LEARN-2019)
 
-[![Image](https://www.in28minutes.com/course-promotional-images/Python-Programming-For-Java-Programmers-in-100-Easy-Steps.png "Python For Beginners - Java to Python in 100 Steps")](https://www.udemy.com/learn-python-programming-for-java-programmers?couponCode=LEARN-2019)
+[![Image](https://www.springboottutorial.com/images/Course-Python-Programming-For-Java-Programmers-in-100-Easy-Steps.png "Python For Beginners - Java to Python in 100 Steps")](https://www.udemy.com/learn-python-programming-for-java-programmers?couponCode=LEARN-2019)
+
 
 ### More Courses and Videos From in28Minutes
 - https://github.com/in28minutes/learn
