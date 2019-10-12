@@ -854,6 +854,11 @@ System.out.println("abcdefghij".substring(3)); //defghij
 
 //All characters from index 3 to 6
 System.out.println("abcdefghij".substring(3,7)); //defg
+
+String s1 = new String("HELLO"); 
+String s2 = new String("HELLO"); 
+System.out.println(s1 == s2); // false
+System.out.println(s1.equals(s2)); // true
 ```
 
 #### String Manipulation methods
