@@ -6,9 +6,19 @@ Review Java 9 Concepts at Jet Speed.
 [![Image](https://www.springboottutorial.com/images/Course-Java-Programming-for-Complete-Beginners-in-250-Steps.png "Java 9 Programming for Complete Beginners in 250 Steps
 ")](https://links.in28minutes.com/MISC-JAVA)
 
-[![Image](https://www.springboottutorial.com/images/Course-Python-Programming-For-Java-Programmers-in-100-Easy-Steps.png "Python For Beginners - Java to Python in 100 Steps")](https://links.in28minutes.com/MISC-JAVA-PYTHON)
 
-[![Image](https://www.springboottutorial.com/images/Course-Learn-Functional-Programming-with-Java.png "Azure Crash Course for Java Spring Boot Developers")](https://links.in28minutes.com/MISC-FP)
+## Keep Learning Every Day**
+- **1:** [FOLLOW](https://links.in28minutes.com/lin) Ranga on LinkedIn
+
+## Check Out Our Amazing ROADMAPS
+- **1:** [AWS Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#aws-roadmap)
+- **2:** [Azure Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#azure-roadmap)
+- **3:** [Google Cloud Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#google-cloud-roadmap)
+- **4:** [Cloud Beginner Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#cloud-beginner-roadmap)
+- **5:** [DevOps Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#devops-roadmap)
+- **6:** [Java Full Stack Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-full-stack-roadmap)
+- **7:** [Java Microservices Roadmap](https://github.com/in28minutes/roadmaps/blob/main/README.md#java-microservices-roadmap)
+
 ## Introduction
 
 ## Background
