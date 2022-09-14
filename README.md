@@ -7,7 +7,7 @@ Review Java 9 Concepts at Jet Speed.
 ")](https://links.in28minutes.com/MISC-JAVA)
 
 
-## Keep Learning Every Day**
+## Keep Learning Every Day
 - **1:** [FOLLOW](https://links.in28minutes.com/lin) Ranga on LinkedIn
 
 ## Check Out Our Amazing ROADMAPS
